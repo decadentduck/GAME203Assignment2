@@ -1,2 +1,2 @@
-INFO: Initializing the window and first scene ( d:\visualstudiosprojects\componentframework3.0\componentframework\gamescenemanager.cpp: 91)
-INFO: 1.13.0 ( d:\visualstudiosprojects\componentframework3.0\componentframework\window.cpp: 66)
+INFO: Initializing the window and first scene ( d:\visualstudiosprojects\game203assignment2\assignment2\componentframework\gamescenemanager.cpp: 91)
+INFO: 1.13.0 ( d:\visualstudiosprojects\game203assignment2\assignment2\componentframework\window.cpp: 66)
