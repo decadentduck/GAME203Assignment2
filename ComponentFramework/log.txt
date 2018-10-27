@@ -1,2 +1,2 @@
-INFO: Initializing the window and first scene ( c:\users\laptop\documents\github\game203assignment2.5\componentframework\gamescenemanager.cpp: 91)
-INFO: 1.13.0 ( c:\users\laptop\documents\github\game203assignment2.5\componentframework\window.cpp: 66)
+INFO: Initializing the window and first scene ( c:\users\laptop\desktop\new folder\componentframework\gamescenemanager.cpp: 91)
+INFO: 1.13.0 ( c:\users\laptop\desktop\new folder\componentframework\window.cpp: 66)
