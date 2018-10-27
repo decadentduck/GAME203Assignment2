@@ -48,7 +48,6 @@ void Scene0::OnResize(int w_, int h_)
 	viewMatrix = MMath::lookAt(Vec3(0.0f, 0.0f, 10.0f), 
 							   Vec3(0.0f, 0.0f, 0.0f), 
 							   Vec3(0.0f, 1.0f, 0.0f));
-	
 }
 
 void Scene0::OnDestroy()
