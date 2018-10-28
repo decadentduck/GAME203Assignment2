@@ -4,8 +4,9 @@
 
 BodyModifier::BodyModifier(Bodies ParentBody_, Bodies ChildBody_)
 {
-	ParentBody = ParentBody_;
-	ChildBody = ChildBody_;
+	Parent = ParentBody_;
+	Child = ChildBody_;
+	
 }
 
 

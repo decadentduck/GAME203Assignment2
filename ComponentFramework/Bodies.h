@@ -4,6 +4,11 @@
 
 class Bodies 
 {
+	friend class BodyModifier;
+protected:
+	Vec3 position;
+	Vec3 rotation;
+	
 public:
 	Bodies();
 	~Bodies();

@@ -5,12 +5,9 @@ class BodyModifier
 {
 	
 private:
-	Bodies ParentBody;
-	Bodies ChildBody;
-	Vec3 ParentLocation;
-	Vec3 ParentRotation;
-	Vec3 ChildLocation;
-	Vec3 ChildRotation;
+	Bodies Parent;
+	Bodies Child;
+	
 public:
 	BodyModifier(Bodies ParentBody, Bodies ChildBody);
 
