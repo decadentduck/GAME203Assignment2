@@ -1,8 +1,8 @@
 #ifndef BODIES_H
 #define BODIES_H
+#include "Model0.h"
 
-
-class Bodies
+class Bodies 
 {
 public:
 	Bodies();

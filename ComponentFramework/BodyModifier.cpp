@@ -2,8 +2,10 @@
 
 
 
-BodyModifier::BodyModifier()
+BodyModifier::BodyModifier(Bodies ParentBody_, Bodies ChildBody_)
 {
+	ParentBody = ParentBody_;
+	ChildBody = ChildBody_;
 }
 
 
