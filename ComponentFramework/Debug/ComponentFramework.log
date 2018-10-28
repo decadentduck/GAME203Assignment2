@@ -1,4 +1,7 @@
-﻿  Scene1.cpp
+﻿  GameSceneManager.cpp
+  Model0.cpp
+  Scene0.cpp
+  Scene1.cpp
   Scene2.cpp
   Scene3.cpp
   Generating Code...
