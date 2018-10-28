@@ -7,10 +7,11 @@ class BodyModifier
 private:
 	Bodies Parent;
 	Bodies Child;
-	
+	float NormalizedPosition, NormalizedRotation;
+
 public:
 	BodyModifier(Bodies ParentBody, Bodies ChildBody);
-
+	void CalculateChildParameters();
 	~BodyModifier();
 	
 
