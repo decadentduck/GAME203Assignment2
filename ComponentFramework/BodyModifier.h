@@ -7,7 +7,7 @@ class BodyModifier
 private:
 	Bodies Parent;
 	Bodies Child;
-	float NormalizedPosition, NormalizedRotation;
+	Vec3 NormalizedPosition, NormalizedRotation;
 
 public:
 	BodyModifier(Bodies ParentBody, Bodies ChildBody);
