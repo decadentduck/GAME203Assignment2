@@ -7,7 +7,6 @@
 #include <iostream>
 #include "MMath.h"
 #include "QuadSphere.h"
-#include "Primitive.h"
 #include "Trackball.h"
 
 namespace GAME
@@ -22,7 +21,7 @@ namespace GAME
 
 	public:
 		explicit Scene2(Window& windowRef);
-		virtual ~Scene3();
+		virtual ~Scene2();
 		virtual bool OnCreate();
 		virtual void OnDestroy();
 		virtual void Update(const float deltaTime);

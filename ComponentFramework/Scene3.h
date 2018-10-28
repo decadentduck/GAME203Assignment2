@@ -7,7 +7,6 @@
 #include <iostream>
 #include "MMath.h"
 #include "QuadSphere.h"
-#include "Primitive.h"
 #include "Trackball.h"
 
 namespace GAME
