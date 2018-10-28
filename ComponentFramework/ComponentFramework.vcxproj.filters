@@ -63,13 +63,10 @@
     <ClCompile Include="ObjLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene1.cpp">
+    <ClCompile Include="Bodies.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene3.cpp">
+    <ClCompile Include="BodyModifier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -122,13 +119,10 @@
     <ClInclude Include="ObjLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene1.h">
+    <ClInclude Include="Bodies.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene3.h">
+    <ClInclude Include="BodyModifier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
