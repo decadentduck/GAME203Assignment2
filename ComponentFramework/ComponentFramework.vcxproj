@@ -69,6 +69,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bodies.cpp" />
+    <ClCompile Include="BodyModifier.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="GameSceneManager.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -88,6 +90,8 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bodies.h" />
+    <ClInclude Include="BodyModifier.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />

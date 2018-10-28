@@ -3,7 +3,7 @@
 using namespace GAME;
 using namespace MATH;
 
-Scene3::Scene3(class Window& windowRef) : Scene(windowRef), model(nullptr)
+Scene3::Scene3(class Window& windowRef) : Scene(windowRef)
 {
 	trackball = new Trackball();
 	projectionMatrix.loadIdentity();
@@ -19,9 +19,18 @@ Scene3::~Scene3()
 
 bool Scene3::OnCreate()
 {
+	
+	CreateForest();
+
 	return true;
 }
 
+void Scene3::CreateForest()
+{
+	//TODO fill trees array with trees
+	//random pos, rotat, model(from a few choices) 
+	//maybe scale....
+}
 
 void Scene3::OnResize(int w_, int h_)
 {
@@ -38,18 +47,20 @@ void Scene3::OnResize(int w_, int h_)
 
 void Scene3::OnDestroy()
 {
+	//TODO delete trees array	
 }
 
 void Scene3::Update(const float deltaTime)
 {
-
+	//TODO camera position via handle events
 }
 
 void Scene3::Render() const
 {
-
+	//TODO Draw the trees in array
 }
 
 void Scene3::HandleEvents(const SDL_Event& SDLEvent)
 {
+	//TODO Handle camera via keyboard input
 }

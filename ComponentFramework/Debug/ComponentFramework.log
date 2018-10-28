@@ -1,4 +1,6 @@
-﻿  GameSceneManager.cpp
+﻿  Bodies.cpp
+  BodyModifier.cpp
+  GameSceneManager.cpp
   Scene3.cpp
   Generating Code...
   ComponentFramework.vcxproj -> D:\VisualStudiosProjects\GAME203Assignment2\Debug\ComponentFramework.exe
