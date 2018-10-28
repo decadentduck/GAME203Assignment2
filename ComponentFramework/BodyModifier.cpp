@@ -9,6 +9,10 @@ BodyModifier::BodyModifier(Bodies ParentBody_, Bodies ChildBody_)
 	
 }
 
+void CalculateChildParameters()
+{
+	
+}
 
 BodyModifier::~BodyModifier()
 {
