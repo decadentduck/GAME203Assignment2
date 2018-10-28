@@ -8,7 +8,7 @@
 #include "MMath.h"
 #include "QuadSphere.h"
 #include "Trackball.h"
-
+///deorating objects assignment
 namespace GAME
 {
 	/// Forward casting
