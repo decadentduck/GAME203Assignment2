@@ -1,5 +1,6 @@
 #ifndef Scene3_H
 #define Scene3_H
+#define NUM_TREES 20
 #include <GL/glew.h>
 #include <SDL.h>
 #include "Scene.h"
@@ -8,6 +9,8 @@
 #include "MMath.h"
 #include "QuadSphere.h"
 #include "Trackball.h"
+#include "Bodies.h"
+
 //forest of trees assignment
 namespace GAME
 {
@@ -29,8 +32,9 @@ namespace GAME
 		virtual void HandleEvents(const SDL_Event &SDLEvent);
 		virtual void OnResize(const int, const int);
 	private:
+		void CreateForest();
 		Vec3 lightPos;
-		Model *model;
+		Bodies* bodies[NUM_TREES];
 		Trackball *trackball;
 	};
 }

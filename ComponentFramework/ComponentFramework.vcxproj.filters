@@ -63,6 +63,15 @@
     <ClCompile Include="ObjLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scene1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Bodies.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -117,6 +126,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ObjLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Bodies.h">
