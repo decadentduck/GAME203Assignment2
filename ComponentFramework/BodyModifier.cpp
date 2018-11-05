@@ -1,13 +1,10 @@
 #include "BodyModifier.h"
 #include <math.h>
 
-<<<<<<< HEAD
+
 
 
 BodyModifier::BodyModifier(Bodies &ParentBody_, Bodies &ChildBody_)
-=======
-BodyModifier::BodyModifier(Bodies ParentBody_, Bodies ChildBody_)
->>>>>>> fc52593aa6a4719842114f4017795b2c59af2d67
 {
 	/*Storing Positions of each Model 
 	for Reference to be used in the class */
