@@ -3,10 +3,12 @@
 
 
 
-BodyModifier::BodyModifier(Bodies ParentBody_, Bodies ChildBody_)
+BodyModifier::BodyModifier(Bodies &ParentBody_, Bodies &ChildBody_)
 {
-	Parent = ParentBody_;
-    Child= ChildBody_;
+	/*Storing Positions of each Model 
+	for Reference to be used in the class */
+	Parent->position = ParentBody_.position;
+	Child->position = ChildBody_.position;
 	
 }
 
@@ -18,20 +20,14 @@ void BodyModifier::CalculateChildParameters()
 	//Parent is rotated x angle 
 		//Child is rotated x angle locally
 
-	NormalizedPosition = Parent.position / 
+	NormalizedPosition = Parent->position / 
 		(
 			sqrt
 			(
-				pow(Parent.position.x, 2) + pow(Parent.position.y, 2) + pow(Parent.position.z, 2)
+				pow(Parent->position.x, 2) + pow(Parent->position.y, 2) + pow(Parent->position.z, 2)
 			)
 		);
-	NormalizedRotation = Parent.rotation /
-		(
-			sqrt
-			(
-				pow(Parent.rotation.x,2) + pow(Parent.rotation.y,2) + pow(Parent.rotation.z,2)
-			)
-		);
+	
 	/*
 	glMatrixMode(GL_MODELVIEW);
 glLoadIdentity();
@@ -47,6 +43,25 @@ glPopMatrix();
 	*/
 
 }
+
+void BodyModifier::RotateBodies(Vec3 RotationDirection, float angle_)
+{
+	/*
+	Translate Child Positions back to parent and have parent as origin
+	Then Rotating the Child by the angle
+	Translate Child back to original spot
+	*/
+	Child->position - Parent->position;
+	glRotatef(angle_, RotationDirection.x, RotationDirection.y, RotationDirection.z);
+	Child->position + Parent->position;
+}
+
+void BodyModifier::TranslateBodies(Vec3 Translation)
+{
+	Parent->position = Translation;
+	Child->position = Translation;
+}
+
 
 
 BodyModifier::~BodyModifier()

@@ -7,8 +7,9 @@ class Bodies
 	friend class BodyModifier;
 protected:
 	Vec3 position;
-	Vec3 rotation;
-	
+	Vec3 rotationDirection;
+	float rotationAngle;
+	GAME::Model0 model; 
 public:
 	Bodies();
 	~Bodies();
