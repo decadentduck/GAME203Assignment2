@@ -1,19 +1,8 @@
-﻿  BodyModifier.cpp
+﻿  Bodies.cpp
+  BodyModifier.cpp
+  GameSceneManager.cpp
+  Model0.cpp
+  Scene0.cpp
   Scene3.cpp
-d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(31): error C2259: 'GAME::Model': cannot instantiate abstract class
-  d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(31): note: due to following members:
-  d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(31): note: 'bool GAME::Model::OnCreate(void)': is abstract
-  d:\visualstudiosprojects\game203assignment2\componentframework\model.h(40): note: see declaration of 'GAME::Model::OnCreate'
-  d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(31): note: 'void GAME::Model::OnDestroy(void)': is abstract
-  d:\visualstudiosprojects\game203assignment2\componentframework\model.h(41): note: see declaration of 'GAME::Model::OnDestroy'
-  d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(31): note: 'void GAME::Model::Render(const MATH::Matrix4 &,const MATH::Matrix4 &,const MATH::Matrix3 &) const': is abstract
-  d:\visualstudiosprojects\game203assignment2\componentframework\model.h(42): note: see declaration of 'GAME::Model::Render'
-d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(31): error C2440: 'initializing': cannot convert from 'GAME::Model0 *' to 'GAME::Model'
-  d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(31): note: No constructor could take the source type, or constructor overload resolution was ambiguous
-d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(33): error C2039: 'SetVel': is not a member of 'GAME::Bodies'
-  d:\visualstudiosprojects\game203assignment2\componentframework\bodies.h(8): note: see declaration of 'GAME::Bodies'
-d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(34): error C2039: 'SetPos': is not a member of 'GAME::Bodies'
-  d:\visualstudiosprojects\game203assignment2\componentframework\bodies.h(8): note: see declaration of 'GAME::Bodies'
-d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(77): warning C4305: 'argument': truncation from 'double' to 'const float'
-d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(80): warning C4305: 'argument': truncation from 'double' to 'const float'
   Generating Code...
+  ComponentFramework.vcxproj -> D:\VisualStudiosProjects\GAME203Assignment2\Debug\ComponentFramework.exe
