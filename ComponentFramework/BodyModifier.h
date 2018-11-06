@@ -11,12 +11,12 @@ class BodyModifier
 	
 private:
 	std::unique_ptr<Bodies> Parent;
-	std::unique_ptr<Bodies> Child;
+	std::shared_ptr<Bodies> Children[10];
 	
 	Vec3 NormalizedPosition;
 
 public:
-	BodyModifier(Bodies &ParentBody, Bodies &ChildBody);
+	BodyModifier(Bodies &ParentBody, Bodies ChildrenBody[]);
 	void CalculateChildParameters();
 	void RotateBodies(Vec3 RotationDirection, float angle_);
 	void TranslateBodies(Vec3 Translation);

@@ -2,7 +2,7 @@
 #define BODIES_H
 #include "Model0.h"
 
-class Model0;
+
 class Bodies 
 {
 	friend class BodyModifier;
