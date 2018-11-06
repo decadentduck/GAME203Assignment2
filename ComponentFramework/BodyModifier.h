@@ -2,6 +2,8 @@
 #define BODYMODIFIER_H
 #include "Bodies.h"
 #include <memory>
+#include "Vector.h"
+using namespace MATH;
 class BodyModifier 
 {
 	template<class T, class U>
