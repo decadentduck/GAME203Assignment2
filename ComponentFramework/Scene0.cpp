@@ -43,11 +43,11 @@ void Scene0::OnResize(int w_, int h_)
 	glViewport(0,0,windowPtr->GetWidth(),windowPtr->GetHeight());
 	float aspect = float(windowPtr->GetWidth()) / float(windowPtr->GetHeight());
 	
-	projectionMatrix = MMath::perspective(45.0f, aspect, 1.0f, 100.0f);
+	projectionMatrix = MMath::perspective(45.0f, aspect, 1.0f, 100.0f); //for the love of whatever you hold dear DO NOT CHANGE THIS... (yet)
 
-	viewMatrix = MMath::lookAt(Vec3(0.0f, 0.0f, 10.0f), 
-							   Vec3(0.0f, 0.0f, 0.0f), 
-							   Vec3(0.0f, 1.0f, 0.0f));
+	viewMatrix = MMath::lookAt(Vec3(0.0f, 0.0f, 10.0f), //(camera) pos
+							   Vec3(0.0f, 0.0f, 0.0f),  // At (looking at this location)
+							   Vec3(0.0f, 1.0f, 0.0f)); // where is up
 }
 
 void Scene0::OnDestroy()
