@@ -72,10 +72,17 @@
     <ClCompile Include="Scene1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Scene2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Scene3.cpp">
+=======
+    <ClCompile Include="Scene3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene2.cpp">
+>>>>>>> d71c24763a85d0968b58d4a60b604e7c9d1fc010
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
