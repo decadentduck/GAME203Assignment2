@@ -2,6 +2,8 @@
 #define BODYMODIFIER_H
 #include "Bodies.h"
 #include <memory>
+#include "Vector.h"
+using namespace MATH;
 class BodyModifier 
 {
 	template<class T, class U>
@@ -11,12 +13,12 @@ class BodyModifier
 	
 private:
 	std::unique_ptr<Bodies> Parent;
-	std::shared_ptr<Bodies> Children[10];
+	std::unique_ptr<Bodies> Child;
 	
 	Vec3 NormalizedPosition;
 
 public:
-	BodyModifier(Bodies &ParentBody, Bodies ChildrenBody[]);
+	BodyModifier(Bodies &ParentBody, Bodies &ChildBody);
 	void CalculateChildParameters();
 	void RotateBodies(Vec3 RotationDirection, float angle_);
 	void TranslateBodies(Vec3 Translation);

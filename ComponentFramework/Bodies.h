@@ -1,6 +1,6 @@
 #ifndef BODIES_H
 #define BODIES_H
-#include "Model0.h"
+
 
 
 class Bodies 
@@ -11,7 +11,7 @@ protected:
 
 	Vec3 rotationDirection;
 	float rotationAngle;
-	
+	 
 
 	Vec3 rotation;
 	
