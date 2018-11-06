@@ -1,8 +1,7 @@
 #include "BodyModifier.h"
 #include <math.h>
 
-
-
+using namespace GAME;
 
 BodyModifier::BodyModifier(Bodies &ParentBody_, Bodies &ChildBody_)
 {
