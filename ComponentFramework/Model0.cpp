@@ -17,7 +17,7 @@ bool Model0::OnCreate(){
 	meshes.push_back( new Mesh(GL_TRIANGLES, obj.vertices,obj.normals,obj.uvCoords));
 	
 	/// Create a shader with attributes
-	shader = new Shader("phongVert.glsl","phongFrag.glsl",3,  0,"vVertex",   1,"vNormal",   2,"texCoords");
+	shader = new Shader("phongVert.glsl", "phongFrag.glsl", 3, 0, "vVertex", 1, "vNormal", 2, "texCoords");
 
 	projectionMatrixID = glGetUniformLocation(shader->getProgram(), "projectionMatrix");
 	modelViewMatrixID = glGetUniformLocation(shader->getProgram(), "modelViewMatrix");

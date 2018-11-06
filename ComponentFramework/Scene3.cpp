@@ -19,7 +19,6 @@ Scene3::~Scene3()
 
 bool Scene3::OnCreate()
 {
-	
 	CreateForest();
 
 	return true;
@@ -58,9 +57,35 @@ void Scene3::Update(const float deltaTime)
 void Scene3::Render() const
 {
 	//TODO Draw the trees in array
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
 }
 
 void Scene3::HandleEvents(const SDL_Event& SDLEvent)
 {
 	//TODO Handle camera via keyboard input
+	switch (SDLEvent.type)
+	{
+	case SDL_KEYUP:
+		switch (SDLEvent.key.keysym.sym)
+		{
+		case SDLK_UP:
+			viewMatrix = viewMatrix * MMath::translate(0, 0, -0.1);
+			break;
+		case SDLK_DOWN:
+			viewMatrix = viewMatrix * MMath::translate(0, 0, 0.1);
+			break;
+		case SDLK_LEFT:
+			viewMatrix = viewMatrix * MMath::rotate(5, 0, 1, 0);
+			break;
+		case SDLK_RIGHT:
+			viewMatrix = viewMatrix * MMath::rotate(-5, 0, 1, 0);
+			break;
+		default:
+			break;
+		}
+		break;
+	default:
+		break;
+	}
 }
