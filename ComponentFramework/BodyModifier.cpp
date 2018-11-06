@@ -53,7 +53,7 @@ void BodyModifier::RotateBodies(Vec3 RotationDirection, float angle_)
 	Translate Child back to original spot
 	*/
 	Child->position - Parent->position;
-	glRotatef(angle_, RotationDirection.x, RotationDirection.y, RotationDirection.z);
+	//glRotatef(angle_, RotationDirection.x, RotationDirection.y, RotationDirection.z);
 	Child->position + Parent->position;
 }
 
