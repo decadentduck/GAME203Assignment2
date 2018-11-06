@@ -27,12 +27,17 @@ bool Scene3::OnCreate()
 
 void Scene3::CreateForest()
 {
+	Model *m = new Model0;
+	Vec3 pos = Vec3(0.0f, 0.0f, 0.0f);
+	Vec3 rot = Vec3(0.0f, 0.0f, 0.0f);
+	Vec3 vel = Vec3(0.0f, 0.0f, 0.0f);
+	m->SetVel(vel);
+	m->SetPos(pos);
+	bodies[0] = new Bodies(pos, rot, m);
+
 	//TODO fill trees array with trees
-	Model m = new Model0;
-	bodies[0] = new Bodies();
-	bodies[0]->SetVel(Vec3(0.0f, 0.0f, 0.0f));
-	bodies[0]->SetPos(Vec3(0.0f, 0.0f, 0.0f));
-	//random pos, rotat, model(from a few choices) 
+	
+	//random pos, rotat, model(from a few choices)
 	//maybe scale....
 }
 
@@ -63,6 +68,7 @@ void Scene3::Render() const
 {
 	//TODO Draw the trees in array
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	bodies[0]->model->Render(projectionMatrix, viewMatrix * MMath::translate(0, 0, 0), Matrix3());
 	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
 }
 

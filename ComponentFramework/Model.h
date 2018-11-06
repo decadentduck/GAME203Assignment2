@@ -23,7 +23,6 @@ protected:
 	std::vector<Mesh*> meshes;
 public:
 
-
 	inline void SetPos(const Vec3& pos_){ pos = pos_; }
 	inline void SetVel(const Vec3& vel_){ vel = vel_; }
 
@@ -36,18 +35,15 @@ public:
 
 	Model() : gravity(0.0f,-9.8f,0.0f)  { };
  
-
 	virtual bool OnCreate() = 0;
 	virtual void OnDestroy() = 0;
 	virtual void Render(const Matrix4& projectionMatrix, const Matrix4& modelViewMatrix, const Matrix3& normalMatrix)const = 0;
-
 
 	void Update(const float deltaTime){
 		pos += vel * deltaTime + 0.5f * gravity * deltaTime * deltaTime;
 		vel += gravity * deltaTime;
 
 	}
-
 };
 
 

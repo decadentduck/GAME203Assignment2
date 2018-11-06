@@ -16,7 +16,7 @@ namespace GAME
 {
 	/// Forward casting
 	class Trackball;
-	class Model;
+	class Model0;
 
 	class Scene3 : public Scene
 	{
