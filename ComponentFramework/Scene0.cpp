@@ -68,8 +68,8 @@ void Scene0::Render() const
 {
 	/// Draw your scene here
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-	model0->SetLightPos(viewMatrix * lightPos);
-	model0->Render(projectionMatrix , trackball->GetMatrix4() *  viewMatrix, trackball->GetMatrix3());
+	model0->SetLightPos(lightPos);
+	model0->Render(projectionMatrix, viewMatrix * MMath::translate(0, 0, 0), Matrix3());
 	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
 }
 
@@ -85,5 +85,4 @@ void Scene0::HandleEvents(const SDL_Event& SDLEvent)
 		trackball->OnMouseMove(SDLEvent.button.x,SDLEvent.button.y);
 	}
 	
-			
 }
