@@ -11,13 +11,13 @@ protected:
 
 	Vec3 rotationDirection;
 	float rotationAngle;
-	GAME::Model0 model; 
+	
 
 	Vec3 rotation;
-	Model0 *model;
+	
 
 public:
-	Bodies(Vec3 pos, Vec3 rot, Model0* m);
+	Bodies(Vec3 pos, Vec3 rot);
 	Bodies();
 	~Bodies();
 };
