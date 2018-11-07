@@ -1,4 +1,5 @@
 #include "Scene3.h"
+#include "Model0.h"
 
 using namespace GAME;
 using namespace MATH;
@@ -35,12 +36,8 @@ void Scene3::CreateForest()
 	bodies[0] = new Bodies(pos, rot, m);
 
 	//TODO fill trees array with trees
-<<<<<<< HEAD
-	
+
 	//random pos, rotat, model(from a few choices)
-=======
-	//random pos, rotat, model(from a few choices) 
->>>>>>> parent of 16c63cb... adding a model to the bodyclass
 	//maybe scale....
 }
 
@@ -77,10 +74,9 @@ void Scene3::Render() const
 
 void Scene3::HandleEvents(const SDL_Event& SDLEvent)
 {
-	//TODO Handle camera via keyboard input
-	switch (SDLEvent.type)
+	//Handle camera via keyboard input
+	if (SDLEvent.type == SDL_KEYUP)
 	{
-	case SDL_KEYUP:
 		switch (SDLEvent.key.keysym.sym)
 		{
 		case SDLK_UP:
@@ -98,8 +94,5 @@ void Scene3::HandleEvents(const SDL_Event& SDLEvent)
 		default:
 			break;
 		}
-		break;
-	default:
-		break;
 	}
 }

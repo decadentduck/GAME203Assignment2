@@ -1,8 +1,5 @@
-﻿  Bodies.cpp
-  BodyModifier.cpp
-  GameSceneManager.cpp
-  Model0.cpp
-  Scene0.cpp
-  Scene3.cpp
-  Generating Code...
+﻿  Scene3.cpp
+d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(83): warning C4305: 'argument': truncation from 'double' to 'const float'
+d:\visualstudiosprojects\game203assignment2\componentframework\scene3.cpp(86): warning C4305: 'argument': truncation from 'double' to 'const float'
+  LINK : D:\VisualStudiosProjects\GAME203Assignment2\Debug\ComponentFramework.exe not found or not built by the last incremental link; performing full link
   ComponentFramework.vcxproj -> D:\VisualStudiosProjects\GAME203Assignment2\Debug\ComponentFramework.exe
