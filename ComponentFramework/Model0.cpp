@@ -12,7 +12,7 @@ Model0::Model0():shader(nullptr) {
 
 bool Model0::OnCreate(){
 	
-	ObjLoader obj("skull.obj");
+	ObjLoader obj("Tree1.obj");
 	
 	meshes.push_back( new Mesh(GL_TRIANGLES, obj.vertices,obj.normals,obj.uvCoords));
 	

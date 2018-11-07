@@ -10,22 +10,21 @@ namespace GAME
 	class Shader;
 	class QuadSphere;
 
-	class Model0 :public Model
+	class ModelTree :public Model
 	{
 	public:
-		Model0();
+		ModelTree();
 
-
-		Model0(const Model0&) = delete;
-		Model0(Model0&&) = delete;
-		Model0& operator = (const Model0&) = delete;
-		Model0& operator = (Model0&&) = delete;
+		ModelTree(const ModelTree&) = delete;
+		ModelTree(ModelTree&&) = delete;
+		ModelTree& operator = (const ModelTree&) = delete;
+		ModelTree& operator = (ModelTree&&) = delete;
 
 		virtual bool OnCreate();
 		virtual void OnDestroy();
 		virtual void Update(const float deltaTime);
 		virtual void Render(const Matrix4& projectionMatrix, const Matrix4& modelViewMatrix, const Matrix3& normalMatrix) const;
-		virtual ~Model0();
+		virtual ~ModelTree();
 
 		virtual void SetLightPos(const Vec3&);
 	private:

@@ -3,10 +3,11 @@
 using namespace GAME;
 using namespace MATH;
 
-Bodies::Bodies(Vec3 pos, Vec3 rot, Model *model_)
+Bodies::Bodies(Vec3 pos, Vec3 rot, Vec3 scale_, Model *model_)
 {
 	position = pos;
 	rotation = rot;
+	scale = scale_;
 	model = model_;
 }
 

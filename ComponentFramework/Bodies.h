@@ -13,9 +13,9 @@ namespace GAME
 		float rotationAngle;
 
 	public:
-		Vec3 position, rotation;
+		Vec3 position, rotation, scale;
 		Model *model;
-		Bodies(Vec3 pos, Vec3 rot, Model *model_);
+		Bodies(Vec3 pos, Vec3 rot, Vec3 scale_, Model *model_);
 		Bodies();
 		~Bodies();
 	};

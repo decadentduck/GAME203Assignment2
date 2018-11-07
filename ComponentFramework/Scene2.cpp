@@ -27,7 +27,7 @@ bool Scene2::OnCreate()
 
 	m->SetVel(vel);
 	m->SetPos(pos);
-	body = new Bodies(pos, rot, m);
+	body = new Bodies(pos, rot, Vec3(1.0f, 1.0f,1.0f), m);
 	return true;
 }
 

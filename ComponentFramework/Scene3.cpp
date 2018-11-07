@@ -1,5 +1,5 @@
 #include "Scene3.h"
-#include "Model0.h"
+#include "ModelTree.h"
 
 using namespace GAME;
 using namespace MATH;
@@ -29,13 +29,13 @@ bool Scene3::OnCreate()
 
 void Scene3::CreateForest()
 {
-	Model *m = new Model0;
+	Model *m = new ModelTree;
 	Vec3 pos = Vec3(0.0f, 0.0f, 0.0f);
 	Vec3 rot = Vec3(0.0f, 0.0f, 0.0f);
 	Vec3 vel = Vec3(0.0f, 0.0f, 0.0f);
 	m->SetVel(vel);
 	m->SetPos(pos);
-	bodies[0] = new Bodies(pos, rot, m);
+	bodies[0] = new Bodies(pos, rot, Vec3(1.0f, 1.0f, 1.0f), m);
 
 	//TODO fill trees array with trees
 
