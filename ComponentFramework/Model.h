@@ -44,6 +44,8 @@ public:
 		vel += gravity * deltaTime;
 
 	}
+
+	//virtual void SetLightPos(const Vec3&) =0;
 };
 
 
