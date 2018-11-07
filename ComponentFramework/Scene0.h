@@ -11,13 +11,13 @@ namespace GAME {
 	class Trackball;
 	class Model0;
 
-	class Scene0 : public Scene  {
+	class Scene0 : public Scene  
+	{
 	protected:
 		
 	public:
 		explicit Scene0(Window& windowRef);
 		virtual ~Scene0();
-
 
 		/// Delete these possible default constructors and operators  
 		Scene0(const Scene0&) = delete;
@@ -31,7 +31,8 @@ namespace GAME {
 		virtual void Render() const;
 		virtual void HandleEvents(const SDL_Event &SDLEvent);
 		virtual void OnResize(const int, const int);
-	
+
+		Vec3 eye, at, up;
 	private:
 		Vec3 lightPos;
 		Model0 *model0;

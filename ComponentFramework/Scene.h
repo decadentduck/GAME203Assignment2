@@ -29,7 +29,6 @@ namespace GAME
 		virtual void HandleEvents(const SDL_Event &SDLEvent) = 0;
 		virtual void OnResize(const int, const int) = 0;
 
-		Vec3 eye, at, up;
 	protected:
 		Window* windowPtr;
 		Matrix4 projectionMatrix;

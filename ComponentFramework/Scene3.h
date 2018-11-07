@@ -31,6 +31,8 @@ namespace GAME
 		virtual void Render() const;
 		virtual void HandleEvents(const SDL_Event &SDLEvent);
 		virtual void OnResize(const int, const int);
+
+		Vec3 eye, at, up;
 	private:
 		void CreateForest();
 		Vec3 lightPos;

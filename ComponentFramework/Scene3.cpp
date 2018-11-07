@@ -1,5 +1,6 @@
 #include "Scene3.h"
 #include "ModelTree.h"
+#include "Camera.h"
 
 using namespace GAME;
 using namespace MATH;
@@ -20,10 +21,13 @@ Scene3::~Scene3()
 
 bool Scene3::OnCreate()
 {
-
 	lightPos = Vec3(10.0f, 3.0f, 10.0f);
 	CreateForest();
 
+	eye = Vec3(0.0f, 3.0f, 10.0f);
+	at = Vec3(0.0f, 0.0f, 0.0f);
+	up = Vec3(0.0f, 1.0f, 0.0f);
+	Camera::GetInstance()->SetLookAt(eye, at, up);
 	return true;
 }
 
@@ -52,7 +56,7 @@ void Scene3::OnResize(int w_, int h_)
 	projectionMatrix = MMath::perspective(45.0f, aspect, 1.0f, 100.0f);
 
 	viewMatrix = MMath::lookAt(
-		Vec3(0.0f, 0.0f, 10.0f),
+		Vec3(0.0f, 100000.0f, 10.0f),
 		Vec3(0.0f, 0.0f, 0.0f),
 		Vec3(0.0f, 1.0f, 0.0f));
 }
@@ -72,7 +76,7 @@ void Scene3::Render() const
 	//TODO Draw the trees in array
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	bodies[0]->model->SetLightPos(lightPos);
-	bodies[0]->model->Render(projectionMatrix, viewMatrix * MMath::translate(0, 0, -1), Matrix3());
+	bodies[0]->model->Render(Camera::GetInstance()->GetProjection(), Camera::GetInstance()->GetView() * MMath::translate(0, 0, 0), Matrix3());
 	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
 }
 
@@ -84,16 +88,20 @@ void Scene3::HandleEvents(const SDL_Event& SDLEvent)
 		switch (SDLEvent.key.keysym.sym)
 		{
 		case SDLK_UP:
-			viewMatrix = viewMatrix * MMath::translate(0, 0, -0.1);
+			eye = MMath::translate(0.0f, 0.0f, -1.0f) * eye;
+			Camera::GetInstance()->SetLookAt(eye, at, up);
 			break;
 		case SDLK_DOWN:
-			viewMatrix = viewMatrix * MMath::translate(0, 0, 0.1);
+			eye = MMath::translate(0.0f, 0.0f, 1.0f) * eye;
+			Camera::GetInstance()->SetLookAt(eye, at, up);
 			break;
 		case SDLK_LEFT:
-			viewMatrix = viewMatrix * MMath::rotate(5, 0, 1, 0);
+			at = MMath::translate(-1.0f, 0.0f, 0.0f) * at;
+			Camera::GetInstance()->SetLookAt(eye, at, up);
 			break;
 		case SDLK_RIGHT:
-			viewMatrix = viewMatrix * MMath::rotate(-5, 0, 1, 0);
+			at = MMath::translate(1.0f, 0.0f, 0.0f) * at;
+			Camera::GetInstance()->SetLookAt(eye, at, up);
 			break;
 		default:
 			break;
