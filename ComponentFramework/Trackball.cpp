@@ -6,13 +6,15 @@
 using namespace GAME;
 using namespace MATH;
 
-void Trackball::OnLeftMouseDown(int x, int y){
+void Trackball::OnLeftMouseDown(int x, int y)
+{
 		int viewport[4];
 		glGetIntegerv(GL_VIEWPORT, viewport);
 		begin = Vec3(float(x - viewport[2]/2), float(viewport[3]/2)-y, 0.0f );
 }
 
-void Trackball::OnMouseMove(int x, int y){
+void Trackball::OnMouseMove(int x, int y)
+{
 	int viewport[4];
 	glGetIntegerv( GL_VIEWPORT, viewport );
 	/// Center mouse screen coords

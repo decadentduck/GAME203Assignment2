@@ -20,6 +20,8 @@ Scene3::~Scene3()
 
 bool Scene3::OnCreate()
 {
+
+	lightPos = Vec3(10.0f, 3.0f, 10.0f);
 	CreateForest();
 
 	return true;
@@ -68,7 +70,8 @@ void Scene3::Render() const
 {
 	//TODO Draw the trees in array
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	bodies[0]->model->Render(projectionMatrix, viewMatrix * MMath::translate(0, 0, 0), Matrix3());
+	bodies[0]->model->SetLightPos(lightPos);
+	bodies[0]->model->Render(projectionMatrix, viewMatrix * MMath::translate(0, 0, 1), Matrix3());
 	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
 }
 
