@@ -111,6 +111,7 @@ void GameSceneManager::HandleEvents()
 					currentScene->OnCreate(); //build scene
 					break;
 				default:
+					currentScene->HandleEvents(SDLEvent);
 					break;
 				}
 			default:  
