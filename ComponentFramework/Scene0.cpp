@@ -6,6 +6,7 @@
 #include "QuadSphere.h"
 #include "Model0.h"
 #include "Trackball.h"
+#include "Camera.h"
 
 using namespace GAME;
 using namespace MATH;
@@ -13,8 +14,8 @@ using namespace MATH;
 Scene0::Scene0(class Window& windowRef):  Scene(windowRef), model0(nullptr) 
 { 
 	trackball = new Trackball();
-	projectionMatrix.loadIdentity();
-	viewMatrix.loadIdentity();
+	/*projectionMatrix.loadIdentity();
+	viewMatrix.loadIdentity();*/
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 }
@@ -33,6 +34,10 @@ bool Scene0::OnCreate()
 	model0 = new Model0();
 	model0->SetVel(Vec3(0.0f,0.0f,0.0f));
 	model0->SetPos(Vec3(0.0f,0.0f,0.0f));
+
+	eye = Vec3(0.0f, 0.0f, 10.0f);
+	at = Vec3(0.0f, 0.0f, 0.0f);
+	up = Vec3(0.0f, 1.0f, 0.0f);
 	return true;
 }
 
@@ -69,20 +74,35 @@ void Scene0::Render() const
 	/// Draw your scene here
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	model0->SetLightPos(lightPos);
-	model0->Render(projectionMatrix, viewMatrix * MMath::translate(0, 0, 0), Matrix3());
+	model0->Render(Camera::GetInstance()->GetProjection(), Camera::GetInstance()->GetView() * MMath::translate(0, 0, 0), Matrix3());
 	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
 }
 
 void Scene0::HandleEvents(const SDL_Event& SDLEvent)
 {
-	if(SDLEvent.type == SDL_EventType::SDL_MOUSEBUTTONDOWN)
+	//Handle camera via keyboard input
+	if (SDLEvent.type == SDL_KEYUP)
 	{
-		trackball->OnLeftMouseDown(SDLEvent.button.x,SDLEvent.button.y);
+		switch (SDLEvent.key.keysym.sym)
+		{
+		case SDLK_UP:
+			eye = MMath::translate(0.0f, 0.0f, -1.0f) * eye;
+			Camera::GetInstance()->SetLookAt(eye, at, up);
+			break;
+		case SDLK_DOWN:
+			eye = MMath::translate(0.0f, 0.0f, 1.0f) * eye;
+			Camera::GetInstance()->SetLookAt(eye, at, up);
+			break;
+		case SDLK_LEFT:
+			at = MMath::translate(1.0f, 0.0f, 0.0f) * at;
+			Camera::GetInstance()->SetLookAt(eye, at, up);
+			break;
+		case SDLK_RIGHT:
+			at = MMath::translate(-1.0f, 0.0f, 0.0f) * at;
+			Camera::GetInstance()->SetLookAt(eye, at, up);
+			break;
+		default:
+			break;
+		}
 	}
-	if (SDLEvent.type == SDL_EventType::SDL_MOUSEMOTION && 
-		SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) 
-	{
-		trackball->OnMouseMove(SDLEvent.button.x,SDLEvent.button.y);
-	}
-	
 }
