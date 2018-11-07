@@ -8,12 +8,14 @@
 #include "MMath.h"
 #include "QuadSphere.h"
 #include "Trackball.h"
+#include "Bodies.h"
+#include "Model1.h"
 ///deorating objects assignment
 namespace GAME
 {
 	/// Forward casting
 	class Trackball;
-	class Model;
+	class Model1;
 
 	class Scene2 : public Scene
 	{
@@ -30,7 +32,7 @@ namespace GAME
 		virtual void OnResize(const int, const int);
 	private:
 		Vec3 lightPos;
-		Model *model;
+		Bodies *body;
 		Trackball *trackball;
 	};
 }
