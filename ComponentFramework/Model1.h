@@ -27,7 +27,7 @@ namespace GAME
 		virtual void Render(const Matrix4& projectionMatrix, const Matrix4& modelViewMatrix, const Matrix3& normalMatrix) const;
 		virtual ~Model1();
 
-		void SetLightPos(const Vec3&);
+		virtual void SetLightPos(const Vec3&);
 	private:
 
 		Shader * shader;

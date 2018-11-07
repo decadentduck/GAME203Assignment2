@@ -58,7 +58,7 @@ void Scene2::Update(const float deltaTime)
 void Scene2::Render() const
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//body->model->Model1::SetLightPos(viewMatrix * lightPos);
+	body->model->SetLightPos(viewMatrix * lightPos);
 	body->model->Render(projectionMatrix, trackball->GetMatrix4() *  viewMatrix, trackball->GetMatrix3());
 	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
 }

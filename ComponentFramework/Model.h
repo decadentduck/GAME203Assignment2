@@ -45,7 +45,7 @@ public:
 
 	}
 
-	//virtual void SetLightPos(const Vec3&) =0;
+	virtual void SetLightPos(const Vec3&) =0;
 };
 
 
