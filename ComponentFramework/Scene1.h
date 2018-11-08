@@ -8,6 +8,7 @@
 #include "MMath.h"
 #include "QuadSphere.h"
 #include "Trackball.h"
+#include "ObjectReader.h"
 ///Gamescene assignment
 namespace GAME
 {

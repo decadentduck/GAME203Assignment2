@@ -40,8 +40,12 @@ void Scene1::Update(const float deltaTime)
 
 void Scene1::Render() const
 {
+	//loop through the array of objects, print them out in their respective locations and orientations
+
 }
 
 void Scene1::HandleEvents(const SDL_Event& SDLEvent)
 {
+	//pressing a key switches which file it reads from
+
 }
