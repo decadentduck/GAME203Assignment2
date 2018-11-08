@@ -18,7 +18,7 @@ namespace GAME
 	class Scene1 : public Scene
 	{
 	protected:
-
+		
 	public:
 		explicit Scene1(Window& windowRef);
 		virtual ~Scene1();

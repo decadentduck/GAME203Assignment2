@@ -23,7 +23,7 @@ bool Model1::OnCreate() {
 	modelViewMatrixID = glGetUniformLocation(shader->getProgram(), "modelViewMatrix");
 	normalMatrixID = glGetUniformLocation(shader->getProgram(), "normalMatrix");
 	lightPosID = glGetUniformLocation(shader->getProgram(), "lightPos");
-	modelMatrix = MMath::translate(0.0f, 0.3f, 0.0f);
+	modelMatrix = MMath::translate(0.0f, 0.3f, -1.5f);
 	return true;
 }
 

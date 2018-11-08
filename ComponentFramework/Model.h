@@ -12,6 +12,7 @@ class Scene;
 namespace GAME {
 
 class Model {
+	friend class BodyModifier;
 protected:
 	Vec3 pos;
 	Vec3 vel;

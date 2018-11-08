@@ -9,7 +9,7 @@ BodyModifier::BodyModifier(Bodies &ParentBody_, Bodies &ChildBody_)
 	for Reference to be used in the class */
 	Parent->position = ParentBody_.position;
 	Child->position = ChildBody_.position;
-
+	Parent->model->modelMatrix = MMath::translate(0.0f, 0.3f, 0.0f);
 }
 
 void BodyModifier::CalculateChildParameters()

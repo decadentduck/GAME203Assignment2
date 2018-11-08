@@ -21,7 +21,7 @@ namespace GAME
 	class Scene3 : public Scene
 	{
 	protected:
-
+		float aspect;
 	public:
 		explicit Scene3(Window& windowRef);
 		virtual ~Scene3();

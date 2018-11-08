@@ -20,7 +20,8 @@ namespace GAME
 	class Scene2 : public Scene
 	{
 	protected:
-
+		
+		float aspect;
 	public:
 		explicit Scene2(Window& windowRef);
 		virtual ~Scene2();

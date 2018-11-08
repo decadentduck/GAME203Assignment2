@@ -23,7 +23,14 @@ bool Scene3::OnCreate()
 
 	lightPos = Vec3(10.0f, 3.0f, 10.0f);
 	CreateForest();
+	glViewport(0, 0, windowPtr->GetWidth(), windowPtr->GetHeight());
+	aspect = float(windowPtr->GetWidth()) / float(windowPtr->GetHeight());
 
+	projectionMatrix = MMath::perspective(45.0f, aspect, 1.0f, 1000.0f);
+	//position , at , up
+	viewMatrix = MMath::lookAt(Vec3(0.0f, 0.0f, 100.0f),
+		Vec3(0.0f, 0.0f, 0.0f),
+		Vec3(0.0f, 1.0f, 0.0f));
 	return true;
 }
 
@@ -83,10 +90,10 @@ void Scene3::HandleEvents(const SDL_Event& SDLEvent)
 		switch (SDLEvent.key.keysym.sym)
 		{
 		case SDLK_UP:
-			viewMatrix = viewMatrix * MMath::translate(0, 0, -0.1);
+			viewMatrix = viewMatrix * MMath::translate(0, 0, -1);
 			break;
 		case SDLK_DOWN:
-			viewMatrix = viewMatrix * MMath::translate(0, 0, 0.1);
+			viewMatrix = viewMatrix * MMath::translate(0, 0, 1);
 			break;
 		case SDLK_LEFT:
 			viewMatrix = viewMatrix * MMath::rotate(5, 0, 1, 0);

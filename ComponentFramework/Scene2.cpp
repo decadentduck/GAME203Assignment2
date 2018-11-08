@@ -28,6 +28,14 @@ bool Scene2::OnCreate()
 	m->SetVel(vel);
 	m->SetPos(pos);
 	body = new Bodies(pos, rot, m);
+	glViewport(0, 0, windowPtr->GetWidth(), windowPtr->GetHeight());
+	aspect = float(windowPtr->GetWidth()) / float(windowPtr->GetHeight());
+
+	projectionMatrix = MMath::perspective(45.0f, aspect, 1.0f, 1000.0f);
+	//position , at , up
+	viewMatrix = MMath::lookAt(Vec3(0.0f, 0.0f, 100.0f),
+		Vec3(0.0f, 0.0f, 0.0f),
+		Vec3(0.0f, 1.0f, 0.0f));
 	return true;
 }
 
@@ -36,8 +44,8 @@ void Scene2::OnResize(int w_, int h_)
 {
 	windowPtr->SetWindowSize(w_, h_);
 	glViewport(0, 0, windowPtr->GetWidth(), windowPtr->GetHeight());
-	float aspect = float(windowPtr->GetWidth()) / float(windowPtr->GetHeight());
-
+	aspect = float(windowPtr->GetWidth()) / float(windowPtr->GetHeight());
+	
 	projectionMatrix = MMath::perspective(45.0f, aspect, 1.0f, 100.0f);
 	//position , at , up
 	viewMatrix = MMath::lookAt(Vec3(0.0f, 0.0f, 100.0f),
@@ -58,6 +66,7 @@ void Scene2::Update(const float deltaTime)
 void Scene2::Render() const
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glFrustum(0.0f, 1080.0f, 1080.0f, 0.0f, 1.0f, 1000.0f);
 	body->model->SetLightPos(viewMatrix * lightPos);
 	body->model->Render(projectionMatrix, trackball->GetMatrix4() *  viewMatrix, trackball->GetMatrix3());
 	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
