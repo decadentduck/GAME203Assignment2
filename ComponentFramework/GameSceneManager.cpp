@@ -1,10 +1,10 @@
-
 #include "GameSceneManager.h"
 #include "Debug.h"
 #include "Timer.h"
 #include "Scene0.h"
 #include "Scene1.h"
 #include "Scene2.h"
+#include "Scene3.h"
 #include <cassert>
 
 using namespace GAME;
@@ -69,27 +69,37 @@ void GameSceneManager::HandleEvents(){
 				break;
 			case SDL_EventType::SDL_KEYDOWN:
 				switch (SDLEvent.key.keysym.sym) {
-					case SDLK_F1:
-						if (currentScene) delete currentScene;
-						currentScene = new Scene1(windowInstance);
-						currentScene->OnCreate();
-						break;
-					case SDLK_F2:
-						
-						
-						
-						break;
-
-					case SDLK_ESCAPE:
-						windowInstance.ToggleFullScreen();
-						break;
-
-					case SDLK_q:
-						isRunning = false;
-						return;
-					default:
-						currentScene->HandleEvents(SDLEvent);
-						break;
+				case SDLK_0:
+					currentScene->OnDestroy(); //delete current scene
+					delete currentScene;
+					currentScene = nullptr;
+					currentScene = new Scene0(windowInstance); //make new scene
+					currentScene->OnCreate(); //build scene
+					break;
+				case SDLK_1: //switch to assignment one when f1 key is pressed / or restart assignment 1
+					currentScene->OnDestroy(); //delete current scene
+					delete currentScene;
+					currentScene = nullptr;
+					currentScene = new Scene1(windowInstance); //make new scene
+					currentScene->OnCreate(); //build scene
+					break;
+				case SDLK_2: //switch to assignment two when f2 key is pressed / or restart assignment 2
+					currentScene->OnDestroy();//delete current scene
+					delete currentScene;
+					currentScene = nullptr;
+					currentScene = new Scene2(windowInstance); //make new scene
+					currentScene->OnCreate();//build scene
+					break;
+				case SDLK_3: //switch to assignment 3 when f13 key is pressed / or restart assignment 3
+					currentScene->OnDestroy(); //delete current scene
+					delete currentScene;
+					currentScene = nullptr;
+					currentScene = new Scene3(windowInstance); //make new scene
+					currentScene->OnCreate(); //build scene
+					break;
+				default:
+					currentScene->HandleEvents(SDLEvent);
+					break;
 				}
 				
 				break;
