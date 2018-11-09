@@ -21,7 +21,7 @@ namespace GAME {
 		(
 			pos, //Position
 			orientation, //At Allows Rotation to look left, up, down, and right 
-			normal //Which was is up?
+			normal //Which way is up?
 		);
 	}
 
