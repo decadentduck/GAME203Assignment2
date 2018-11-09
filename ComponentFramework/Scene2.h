@@ -9,18 +9,20 @@
 #include "QuadSphere.h"
 #include "Trackball.h"
 #include "Bodies.h"
-//#include "Model1.h"
+#include "Model.h"
+#include "Camera.h"
 ///deorating objects assignment
 namespace GAME
 {
 	/// Forward casting
 	class Trackball;
-	class Model1;
+	class Model;
 
 	class Scene2 : public Scene
 	{
 	protected:
-
+		Vec3 eye, at, up;
+		Camera currentCamera();
 	public:
 		explicit Scene2(Window& windowRef);
 		virtual ~Scene2();

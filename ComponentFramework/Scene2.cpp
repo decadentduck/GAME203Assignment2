@@ -5,11 +5,18 @@ using namespace MATH;
 
 Scene2::Scene2(class Window& windowRef) : Scene(windowRef)
 {
-	/*trackball = new Trackball();
-	projectionMatrix.loadIdentity();
-	viewMatrix.loadIdentity();
+	trackball = new Trackball();
+	//projectionMatrix.loadIdentity();
+	//viewMatrix.loadIdentity();
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);*/
+	glEnable(GL_CULL_FACE);
+	//ProjectionMatrix:: close = 0.75f && far = 100.0f
+	currentCamera() = //Camera::Camera(ViewportWidth, ViewportHeight, CameraPosition)
+		Camera::Camera
+		(
+			//ViewportWidth           ViewportHeight        CameraPosition
+			windowRef.getWidth(), windowRef.getHeight(), Vec3(0.0f, 0.0f, 0.0f)
+		);
 }
 
 Scene2::~Scene2()
@@ -19,21 +26,30 @@ Scene2::~Scene2()
 
 bool Scene2::OnCreate()
 {
-	/*Model *m = new Model1;
+	Model *m;
+	/* Re-adjusts Camera in case scene is changed   */	
+	
+	
+	
+	eye = Vec3(0.0f, 3.0f, 10.0f);
+	at = Vec3(0.0f, 0.0f, 0.0f);
+	up = Vec3(0.0f, 1.0f, 0.0f);
+	
 	Vec3 pos = Vec3(0.0f, 0.0f, 0.0f);
 	Vec3 rot = Vec3(0.0f, 0.0f, 0.0f);
 	Vec3 vel = Vec3(0.0f, 0.0f, 0.0f);
 	lightPos = Vec3(10.0f, 3.0f, 10.0f);
 
-	m->SetVel(vel);
-	m->SetPos(pos);
-	body = new Bodies(pos, rot, Vec3(1.0f, 1.0f,1.0f), m);*/
+	m->setPos(pos);
+
+	body = new Bodies(pos, rot, Vec3(1.0f, 1.0f,1.0f), m);
 	return true;
 }
 
 
 void Scene2::OnResize(int w_, int h_)
 {
+	currentCamera() = Camera::Camera(w_, h_, Vec3(0.0f, 0.0f, 0.0f));
 	//windowPtr->SetWindowSize(w_, h_);
 	//glViewport(0, 0, windowPtr->GetWidth(), windowPtr->GetHeight());
 	//float aspect = float(windowPtr->GetWidth()) / float(windowPtr->GetHeight());
