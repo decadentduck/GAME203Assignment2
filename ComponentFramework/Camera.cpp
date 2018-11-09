@@ -20,8 +20,8 @@ namespace GAME {
 		viewMatrix = MMath::lookAt
 		(
 			pos, //Position
-			orientation, //At
-			normal //Orientation
+			orientation, //At Allows Rotation to look left, up, down, and right 
+			normal //Which was is up?
 		);
 	}
 
