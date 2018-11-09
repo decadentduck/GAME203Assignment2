@@ -31,7 +31,7 @@ namespace GAME
 		virtual ~Scene1();
 		virtual bool OnCreate();
 		virtual void OnDestroy();
-		virtual void Update();
+		virtual void Update(const float deltaTime);
 		virtual void Render() const;
 		virtual void HandleEvents(const SDL_Event &SDLEvent);
 		virtual void OnResize(const int, const int);

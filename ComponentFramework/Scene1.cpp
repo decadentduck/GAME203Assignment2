@@ -6,8 +6,8 @@ using namespace MATH;
 Scene1::Scene1(class Window& windowRef) : Scene(windowRef), model(nullptr)
 {
 	trackball = new Trackball();
-	projectionMatrix.loadIdentity();
-	viewMatrix.loadIdentity();
+	/*projectionMatrix.loadIdentity();
+	viewMatrix.loadIdentity();*/
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 }
@@ -35,15 +35,15 @@ void Scene1::OnDestroy()
 {
 }
 
-void Scene1::Update()
+void Scene1::Update(const float deltaTime)
 {
 	if (activeScene != loadedScene)
 	{
-		if (activeScene == 1) { filename = ""; }
+		if (activeScene == 1) { filename = "World1.xml"; }
 		else if (activeScene == 2) { filename = ""; }
 
 		fin.open(filename);
-		if (fin.fail) { cout << "Opening File failed. \n"; }
+		//if (fin.fail) { std::cout << "Opening File failed. \n" << endl; }
 
 		int i = 0;
 
@@ -69,7 +69,9 @@ void Scene1::Update()
 				if ((loc_rZ >= 0) && (loc_rZ < next.length())) { rZ = stoi(next.substr(0, 5)); }
 			} while (((loc_end < 0) || (loc_end >= next.length())) && (getline(fin, next)));
 
-			Objects[i] = new Object(name, pX, pY, pZ, rX, rY, rZ);
+			//Objects[i] = new Object(name, pX, pY, pZ, rX, rY, rZ);
+
+			std::cout << name << " " << pX << " " << pY << " " << pZ << " " << rX << " " << rY << " " << rZ << endl;
 
 			name.erase(0, name.length());
 			pX = NULL;
@@ -82,6 +84,8 @@ void Scene1::Update()
 		}
 		loadedScene = activeScene;
 	}
+
+	getchar();
 }
 
 void Scene1::Render() const
@@ -103,8 +107,8 @@ void Scene1::HandleEvents(const SDL_Event& SDLEvent)
 			case SDL_KEYUP:
 				if (event.key.keysym.sym == SDLK_RETURN)
 				{
-					if (activeScene == 1) { activeScene == 2; }
-					else { activeScene == 1; }
+					if (activeScene == 1) { activeScene = 2; }
+					else { activeScene = 1; }
 				}
 				break;
 
