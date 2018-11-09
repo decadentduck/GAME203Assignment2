@@ -13,6 +13,7 @@ namespace GAME {
 	private:
 		Matrix4 projectionMatrix;
 		Matrix4 viewMatrix;
+		Vec3 eye, at, up;
 
 	private:
 		void updateViewMatrix();
@@ -28,6 +29,7 @@ namespace GAME {
 		Matrix4&  getViewMatrix();
 
 		void setPos(const Vec3& pos_) override;
+		void setPos(const Vec3& eye_, const Vec3& at_, const Vec3& up_);
 		void setOrientation(const Vec3& orienration_) override;
 
 

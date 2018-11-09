@@ -12,7 +12,6 @@ using namespace MATH;
 class Model : public Entity {
 	friend class BodyModifier;
 protected:
-	float rotation, scale;
 
 	class Shader *shader;
 
@@ -20,8 +19,8 @@ protected:
 	std::vector<Mesh*> meshes;
 
 public:
+
 	Model(const Vec3 _pos, const Vec3 _orientation);
-	Model(const Vec3 _pos, const Vec3 _orientation, const float rotation_, const float scale_);
 	Model(const Model&) = delete;
 	Model(Model&&) = delete;
 	Model& operator = (const Model&) = delete;

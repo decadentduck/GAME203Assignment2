@@ -15,9 +15,7 @@ namespace GAME {
 	Camera::~Camera() {}
 
 	void Camera::updateViewMatrix(){
-		viewMatrix = MMath::lookAt(pos,
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 1.0f, 0.0f));
+		viewMatrix = MMath::lookAt(eye, at, up);
 	}
 
 	Matrix4&  Camera::getProjectionMatrix() {
@@ -33,7 +31,13 @@ namespace GAME {
 		Entity::setPos(pos_);
 		updateViewMatrix();
 	}
-
+	void Camera::setPos(const Vec3& eye_, const Vec3& at_, const Vec3& up_)
+	{
+		eye = eye_;
+		at = at_;
+		up = up_;
+		updateViewMatrix();
+	}
 	void Camera::setOrientation(const Vec3& orientation_){
 		Entity::setOrientation(orientation_);
 		updateViewMatrix();
