@@ -16,6 +16,7 @@ namespace GAME {
 
 	private:
 		void updateViewMatrix();
+		
 
 	public:
 
@@ -28,8 +29,10 @@ namespace GAME {
 		Matrix4&  getViewMatrix();
 
 		void setPos(const Vec3& pos_) override;
-		void setOrientation(const Vec3& orienration_) override;
-		void setNormal(const Vec3& normal_) override;
+		void setAt(const Vec3& at_) override;
+		void setNormal(const Vec3& up_) override;
+		void setCamera(const Vec3& eye_, const Vec3& at_, const Vec3& up_) override;
+
 
 
 

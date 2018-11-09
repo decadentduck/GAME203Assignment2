@@ -13,8 +13,9 @@ namespace GAME {
 	protected:
 
 		Vec3 pos;					/// of just the data in the PhysicsModel
-		Vec3 orientation;			/// based on Euler angles
+		Vec3 at;			/// based on Euler angles
 		Vec3 normal;
+
 
 	public:
 
@@ -22,7 +23,8 @@ namespace GAME {
 		virtual ~Entity() {};
 
 		virtual void setPos(const Vec3& pos_) { pos = pos_; }
-		virtual void setOrientation(const Vec3& orienration_) { orientation = orienration_; }
+		virtual void setCamera(const Vec3& eye_, const Vec3& at_, const Vec3& up_) { pos = eye_; at = at_; normal = up_; }
+		virtual void setAt(const Vec3& at_) { at = at_; }
 		virtual void setNormal(const Vec3& normal_) { normal = normal_; }
 		virtual void Translate(const Vec3& vec) { setPos(pos + vec); }
 		
