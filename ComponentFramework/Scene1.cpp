@@ -28,7 +28,15 @@ bool Scene1::OnCreate()
 
 void Scene1::OnResize(int w_, int h_)
 {
+	windowPtr->SetWindowSize(w_, h_);
+	glViewport(0, 0, windowPtr->GetWidth(), windowPtr->GetHeight());
+	float aspect = float(windowPtr->GetWidth()) / float(windowPtr->GetHeight());
 
+	projectionMatrix = MMath::perspective(45.0f, aspect, 1.0f, 100.0f);
+	//position , at , up
+	viewMatrix = MMath::lookAt(Vec3(0.0f, 0.0f, 100.0f),
+		Vec3(0.0f, 0.0f, 0.0f),
+		Vec3(0.0f, 1.0f, 0.0f));
 }
 
 void Scene1::OnDestroy()
@@ -40,7 +48,7 @@ void Scene1::Update(const float deltaTime)
 	if (activeScene != loadedScene)
 	{
 		if (activeScene == 1) { filename = "World1.xml"; }
-		else if (activeScene == 2) { filename = ""; }
+		else if (activeScene == 2) { filename = "World2.xml"; }
 
 		fin.open(filename);
 		//if (fin.fail) { std::cout << "Opening File failed. \n" << endl; }
@@ -69,6 +77,7 @@ void Scene1::Update(const float deltaTime)
 				if ((loc_rZ >= 0) && (loc_rZ < next.length())) { rZ = stoi(next.substr(0, 5)); }
 			} while (((loc_end < 0) || (loc_end >= next.length())) && (getline(fin, next)));
 
+			//This sets the values obtained above into the array
 			//Objects[i] = new Object(name, pX, pY, pZ, rX, rY, rZ);
 
 			std::cout << name << " " << pX << " " << pY << " " << pZ << " " << rX << " " << rY << " " << rZ << endl;
