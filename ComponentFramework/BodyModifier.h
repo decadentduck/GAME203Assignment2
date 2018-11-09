@@ -3,6 +3,7 @@
 #include "Bodies.h"
 #include <memory>
 #include "Vector.h"
+#include <vector>
 
 namespace GAME
 {
@@ -15,14 +16,20 @@ namespace GAME
 
 	private:
 		std::unique_ptr<Bodies> Parent;
-		std::unique_ptr<Bodies> Child;
+		std::unique_ptr<std::vector<Bodies>> Children;
+		//std::unique_ptr<Bodies> Child;
 
 		Vec3 NormalizedPosition;
 
 	public:
-		BodyModifier(Bodies &ParentBody, Bodies &ChildBody);
+
+		MATH::Matrix4 ParentMatrix;
+		std::vector<MATH::Matrix4> ChildMatrix;
+
+		BodyModifier(Bodies &ParentBody_, std::vector<Bodies> &ChildrenBodies_);
 		void CalculateChildParameters();
-		void RotateBodies(Vec3 RotationDirection, float angle_);
+		void TranslateBodies(MATH::Matrix4 translation_);
+		void RotateBodies(MATH::Matrix4 rotation_, float angle_);
 		void TranslateBodies(Vec3 Translation);
 		~BodyModifier();
 

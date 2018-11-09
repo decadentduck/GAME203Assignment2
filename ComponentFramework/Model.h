@@ -10,7 +10,7 @@ namespace GAME {
 using namespace MATH;
 
 class Model : public Entity {
-
+	friend class BodyModifier;
 protected:
 
 	class Shader *shader;
