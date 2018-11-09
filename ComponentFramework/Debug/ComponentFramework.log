@@ -1,3 +1,7 @@
-﻿  Model.cpp
-d:\visualstudiosprojects\graphicsframework1.2\componentframework\model.cpp(71): warning C4305: 'argument': truncation from 'double' to 'const float'
-  ComponentFramework.vcxproj -> D:\VisualStudiosProjects\GraphicsFramework1.2\Debug\ComponentFramework.exe
+﻿  GameSceneManager.cpp
+  Scene0.cpp
+  Scene1.cpp
+  Scene2.cpp
+  Scene3.cpp
+  Generating Code...
+  ComponentFramework.vcxproj -> D:\VisualStudiosProjects\GAME203Assignment2\Debug\ComponentFramework.exe

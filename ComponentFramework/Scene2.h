@@ -9,7 +9,7 @@
 #include "QuadSphere.h"
 #include "Trackball.h"
 #include "Bodies.h"
-#include "Model1.h"
+//#include "Model1.h"
 ///deorating objects assignment
 namespace GAME
 {

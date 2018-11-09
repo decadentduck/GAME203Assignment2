@@ -1,4 +1,7 @@
 /// A simple subdivided cube - SSF
+
+#pragma once
+
 #include <vector>
 #include "Vector.h"
 

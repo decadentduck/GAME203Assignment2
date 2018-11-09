@@ -5,11 +5,11 @@ using namespace MATH;
 
 Scene2::Scene2(class Window& windowRef) : Scene(windowRef)
 {
-	trackball = new Trackball();
+	/*trackball = new Trackball();
 	projectionMatrix.loadIdentity();
 	viewMatrix.loadIdentity();
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);*/
 }
 
 Scene2::~Scene2()
@@ -19,7 +19,7 @@ Scene2::~Scene2()
 
 bool Scene2::OnCreate()
 {
-	Model *m = new Model1;
+	/*Model *m = new Model1;
 	Vec3 pos = Vec3(0.0f, 0.0f, 0.0f);
 	Vec3 rot = Vec3(0.0f, 0.0f, 0.0f);
 	Vec3 vel = Vec3(0.0f, 0.0f, 0.0f);
@@ -27,22 +27,22 @@ bool Scene2::OnCreate()
 
 	m->SetVel(vel);
 	m->SetPos(pos);
-	body = new Bodies(pos, rot, Vec3(1.0f, 1.0f,1.0f), m);
+	body = new Bodies(pos, rot, Vec3(1.0f, 1.0f,1.0f), m);*/
 	return true;
 }
 
 
 void Scene2::OnResize(int w_, int h_)
 {
-	windowPtr->SetWindowSize(w_, h_);
-	glViewport(0, 0, windowPtr->GetWidth(), windowPtr->GetHeight());
-	float aspect = float(windowPtr->GetWidth()) / float(windowPtr->GetHeight());
+	//windowPtr->SetWindowSize(w_, h_);
+	//glViewport(0, 0, windowPtr->GetWidth(), windowPtr->GetHeight());
+	//float aspect = float(windowPtr->GetWidth()) / float(windowPtr->GetHeight());
 
-	projectionMatrix = MMath::perspective(45.0f, aspect, 1.0f, 100.0f);
-	//position , at , up
-	viewMatrix = MMath::lookAt(Vec3(0.0f, 0.0f, 100.0f),
-								Vec3(0.0f, 0.0f, 0.0f),
-								Vec3(0.0f, 1.0f, 0.0f));
+	//projectionMatrix = MMath::perspective(45.0f, aspect, 1.0f, 100.0f);
+	////position , at , up
+	//viewMatrix = MMath::lookAt(Vec3(0.0f, 0.0f, 100.0f),
+	//							Vec3(0.0f, 0.0f, 0.0f),
+	//							Vec3(0.0f, 1.0f, 0.0f));
 }
 
 void Scene2::OnDestroy()
@@ -57,15 +57,15 @@ void Scene2::Update(const float deltaTime)
 
 void Scene2::Render() const
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	/*glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	body->model->SetLightPos(viewMatrix * lightPos);
 	body->model->Render(projectionMatrix, trackball->GetMatrix4() *  viewMatrix, trackball->GetMatrix3());
-	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
+	SDL_GL_SwapWindow(windowPtr->getSDLWindow());*/
 }
 
 void Scene2::HandleEvents(const SDL_Event& SDLEvent)
 {
-	if (SDLEvent.type == SDL_EventType::SDL_MOUSEBUTTONDOWN)
+	/*if (SDLEvent.type == SDL_EventType::SDL_MOUSEBUTTONDOWN)
 	{
 		trackball->OnLeftMouseDown(SDLEvent.button.x, SDLEvent.button.y);
 	}
@@ -73,6 +73,6 @@ void Scene2::HandleEvents(const SDL_Event& SDLEvent)
 		SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
 	{
 		trackball->OnMouseMove(SDLEvent.button.x, SDLEvent.button.y);
-	}
+	}*/
 
 }
