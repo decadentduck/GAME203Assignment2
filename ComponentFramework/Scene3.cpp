@@ -56,7 +56,7 @@ void Scene3::OnResize(int w_, int h_)
 	projectionMatrix = MMath::perspective(45.0f, aspect, 1.0f, 100.0f);
 
 	viewMatrix = MMath::lookAt(
-		Vec3(0.0f, 100000.0f, 10.0f),
+		Vec3(0.0f, 0.0f, 10.0f),
 		Vec3(0.0f, 0.0f, 0.0f),
 		Vec3(0.0f, 1.0f, 0.0f));
 }
@@ -76,7 +76,7 @@ void Scene3::Render() const
 	//TODO Draw the trees in array
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	bodies[0]->model->SetLightPos(lightPos);
-	bodies[0]->model->Render(Camera::GetInstance()->GetProjection(), Camera::GetInstance()->GetView() * MMath::translate(0, 0, 0), Matrix3());
+	bodies[0]->model->Render(Camera::GetInstance()->GetProjection(), Camera::GetInstance()->GetView(), Matrix3());
 	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
 }
 

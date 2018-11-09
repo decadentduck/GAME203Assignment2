@@ -56,7 +56,7 @@ void ModelTree::Render(const Matrix4& projectionMatrix, const Matrix4& viewMatri
 {
 	glUseProgram(shader->getProgram());
 	glUniformMatrix4fv(projectionMatrixID, 1, GL_FALSE, projectionMatrix);
-	glUniformMatrix4fv(modelViewMatrixID, 1, GL_FALSE, viewMatrix *  modelMatrix  );
+	glUniformMatrix4fv(modelViewMatrixID, 1, GL_FALSE, viewMatrix * modelMatrix * MMath::translate(-10.0f, -5.0f, 0.0f));
 	glUniformMatrix3fv(normalMatrixID, 1, GL_FALSE, normalMatrix);
 	glUniform3fv(lightPosID, 1, lightPos);
 	for(Mesh* mesh : meshes) 
