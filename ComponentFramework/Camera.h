@@ -29,6 +29,7 @@ namespace GAME {
 
 		void setPos(const Vec3& pos_) override;
 		void setOrientation(const Vec3& orienration_) override;
+		void setNormal(const Vec3& normal_) override;
 
 
 
