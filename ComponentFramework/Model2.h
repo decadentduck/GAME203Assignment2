@@ -13,10 +13,11 @@ namespace GAME {
 		friend class BodyModifier;
 	protected:
 		float rotation, scale;
-
+		bool change;
 		class Shader *shader;
 
 		Matrix4 Model2Matrix;
+		
 		std::vector<Mesh*> meshes;
 
 	public:

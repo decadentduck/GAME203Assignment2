@@ -36,6 +36,9 @@ bool Scene2::OnCreate()
 	if (addModel("Tree1.obj") == false) {
 		return false;
 	}
+	if (addModel("Tree1.obj") == false) {
+		return false;
+	}
 	eye = Vec3(0.0f, 3.0f, 10.0f);
 	at = Vec3(0.0f, 0.0f, 0.0f);
 	up = Vec3(0.0f, 1.0f, 0.0f);
@@ -94,7 +97,10 @@ void Scene2::Update(const float deltaTime)
 		model->Update(deltaTime);
 	}
 	
+	models[refNumber]->setPos(at);
 	
+	negativeRefPosition = eye - at;
+	positiveRefPosition = eye - negativeRefPosition;
 	
 }
 
@@ -121,42 +127,44 @@ void Scene2::HandleEvents(const SDL_Event& SDLEvent)
 		case SDLK_w:
 			eye = MMath::translate(0.0f, 0.0f, -1.0f) * eye;
 			at = MMath::translate(0.0f, 0.0f, -1.0f) * at;
-			camera->SetCamera(eye, at, up);
+			
 			break;
 		case SDLK_s:
 			eye = MMath::translate(0.0f, 0.0f, 1.0f) * eye;
 			at = MMath::translate(0.0f, 0.0f, 1.0f) * at;
-			camera->SetCamera(eye, at, up);
+			
 			break;
 		case SDLK_a:
 			eye = MMath::translate(-1.0f, 0.0f, 0.0f) * eye;
 			at = MMath::translate(-1.0f, 0.0f, 0.0f) * at;
-			camera->SetCamera(eye, at, up);
+			
 			break;
 		case SDLK_d:
 			eye = MMath::translate(1.0f, 0.0f, 0.0f) * eye;
 			at = MMath::translate(1.0f, 0.0f, 0.0f) * at;
-			camera->SetCamera(eye, at, up);
+		
 			break;
 		case SDLK_UP:
-			at = MMath::rotate(3, Vec3(1.0f, 0.0f, 0.0f))  * at;
-			camera->SetCamera(eye, at, up);
+			at = MMath::translate(0.0f, 0.0f, -1.0f) * at;
+			
 			break;
 		case SDLK_DOWN:
-			at = MMath::rotate(3, Vec3(-1.0f, 0.0f, 0.0f))  * at;
-			camera->SetCamera(eye, at, up);
+			at = MMath::translate(0.0f, 0.0f, 1.0f) * at;
+			
 			break;
 		case SDLK_LEFT:
-			at = MMath::rotate(3, Vec3(0.0f, -1.0f, 0.0f)) * at;
-			camera->SetCamera(eye, at, up);
+			at = MMath::translate(-1.0f, 0.0f, 0.0f) * at;
+			
 			break;
 		case SDLK_RIGHT:
-			at = MMath::rotate(3, Vec3(0.0f, 1.0f, 0.0f))* at;
-			camera->SetCamera(eye, at, up);
+			at = MMath::translate(1.0f, 0.0f, 0.0f) * at;
+			
 			break;
 		default:
 			break;
 		}
+		
+		camera->SetCamera(eye, at, up);
 		Camera::currentCamera = camera;
 		printf("Camera: [%f,%f,%f][%f,%f,%f][%f,%f,%f]\n", eye.x, eye.y, eye.z, at.x, at.y, at.z, up.x, up.y, up.z);
 		
@@ -177,7 +185,7 @@ void Scene2::HandleEvents(const SDL_Event& SDLEvent)
 
 bool GAME::Scene2::addModel(const char* filename)
 {
-	models.push_back(new Model2(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 90.0f, 0.05f));
+	models.push_back(new Model2(Vec3(2.2f, 0.0f, 2.2f), Vec3(0.0f, 0.0f, 0.0f), 90.0f, 0.05f));
 	models[models.size() - 1]->OnCreate();
 
 	if (models[models.size() - 1]->LoadMesh(filename) == false) {
@@ -188,7 +196,7 @@ bool GAME::Scene2::addModel(const char* filename)
 
 bool GAME::Scene2::addReferenceModel(const char* filename, Vec3 at_)
 {
-	models.push_back(new Model2(at_, Vec3(0.0f, 0.0f, 0.0f), 90.0f, 0.5f));
+	models.push_back(new Model2(at_, Vec3(0.0f, 0.0f, 0.0f), 90.0f, 0.05f));
 	models[models.size() - 1]->OnCreate();
 	refNumber = models.size() - 1;
 	if (models[models.size() - 1]->LoadMesh(filename) == false) {

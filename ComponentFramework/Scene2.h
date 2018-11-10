@@ -16,6 +16,7 @@ namespace GAME
 		bool addModel(const char* filename);
 		bool addReferenceModel(const char* filename, Vec3 at_);
 		unsigned int refNumber;
+		
 	public:
 		explicit Scene2(Window& windowRef);
 		virtual ~Scene2();
@@ -28,7 +29,7 @@ namespace GAME
 
 	private:
 		Vec3 lightPos;
-		
+		Vec3 positiveRefPosition, negativeRefPosition;
 		Trackball *trackball;
 		Vec3 eye, at, up;
 		Camera *camera = nullptr;
