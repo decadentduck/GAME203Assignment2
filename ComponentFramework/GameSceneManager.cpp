@@ -30,8 +30,6 @@ GameSceneManager* GameSceneManager::getInstance(){
 	return instance.get();
 }
 
-
-
 void GameSceneManager::Run(){
 	isRunning = Initialize();  /// Initialize the window and setup OpenGL
 	Timer timer;
@@ -138,7 +136,7 @@ bool GameSceneManager::Initialize(){
 	}
 
 	
-	currentScene = new Scene1(windowInstance);
+	currentScene = new Scene0(windowInstance);
 
 	if(currentScene == nullptr){
 		Debug::Log(EMessageType::FATAL_ERROR, "Failed to initialize the Scene",__FILE__, __LINE__);
