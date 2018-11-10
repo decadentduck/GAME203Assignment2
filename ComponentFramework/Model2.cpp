@@ -36,16 +36,21 @@ namespace GAME {
 		Entity::setOrientation(orientation_);
 		updateModel2Matrix();
 	}
+	void Model2::setScale(const float& scale_)
+	{
+		scale = scale_;
+	}
 
 	void Model2::updateModel2Matrix() {
-		Model2Matrix = MMath::translate(pos);
-
+		//Model2Matrix = MMath::translate(pos);
+		change = true;
 		/// This transform is based on Euler angles - let's do it later
-		///Model2Matrix = MMath::translate(pos) * MMath::rotate(orientation.z, Vec3(0.0f, 0.0f, 1.0f)) * MMath::rotate(orientation.x, Vec3(1.0f, 0.0f, 0.0f)) * MMath::rotate(orientation.y, Vec3(0.0f, 1.0f, 0.0f));
+		Model2Matrix = MMath::translate(pos) * MMath::rotate(orientation.z, Vec3(0.0f, 0.0f, 1.0f)) * MMath::rotate(orientation.x, Vec3(1.0f, 0.0f, 0.0f)) * MMath::rotate(orientation.y, Vec3(0.0f, 1.0f, 0.0f));
 	}
 
 	bool Model2::OnCreate() {
 		shader = new Shader("phongVert.glsl", "phongFrag.glsl", 3, 0, "vVertex", 1, "vNormal", 2, "texCoords");
+		change = false;
 		return true;
 	}
 
@@ -62,6 +67,7 @@ namespace GAME {
 
 
 	void Model2::Update(const float deltaTime) {
+		//Model2::updateModel2Matrix();
 		/// See Entity.h
 		///Rotate(Vec3(0.0f, 50.0f * deltaTime, 0.0f));
 	}
@@ -70,7 +76,7 @@ namespace GAME {
 
 		GLint projectionMatrixID = glGetUniformLocation(shader->getProgram(), "projectionMatrix");
 		GLint viewMatrixID = glGetUniformLocation(shader->getProgram(), "viewMatrix");
-		GLint Model2MatrixID = glGetUniformLocation(shader->getProgram(), "Model2Matrix");
+		GLint modelMatrixID = glGetUniformLocation(shader->getProgram(), "modelMatrix");
 		GLint normalMatrixID = glGetUniformLocation(shader->getProgram(), "normalMatrix");
 		GLint lightPosID = glGetUniformLocation(shader->getProgram(), "lightPos");
 
@@ -78,18 +84,31 @@ namespace GAME {
 
 		glUniformMatrix4fv(projectionMatrixID, 1, GL_FALSE, Camera::currentCamera->getProjectionMatrix());
 		glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, Camera::currentCamera->getViewMatrix());
-		Matrix4 _Model2Matrix = MMath::rotate(rotation, 0.0f, 1.0f, 0.0f) * MMath::scale(scale, scale, scale) * MMath::translate(-10.0f, -30.0f, 0.0f);
-		glUniformMatrix4fv(Model2MatrixID, 1, GL_FALSE, _Model2Matrix);
+		 //Use _modelMatrix if there has been no changes
+		Matrix3 normalMatrix;
+		if (!change)
+		{
+			Matrix4 _modelMatrix = MMath::rotate(rotation, 0.0f, 1.0f, 0.0f) * MMath::scale(scale, scale, scale);
+			glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, _modelMatrix);
+			normalMatrix = Matrix3(_modelMatrix);
+		}
+		
+		else
+		{
+			glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, Model2Matrix);
+			normalMatrix = Matrix3(Model2Matrix);
+		}
+			 
 		/*** If you want to use the trackball use this code instead
-		glUniformMatrix4fv(Model2MatrixID, 1, GL_FALSE, Model2Matrix * Trackball::getInstance()->getMatrix4());
+		glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, modelMatrix * Trackball::getInstance()->getMatrix4());
 		***/
 
-		/// Assigning the 4x4 Model2Matrix to the 3x3 normalMatrix 
-		/// copies just the upper 3x3 of the Model2Matrix
-		Matrix3 normalMatrix = Matrix3(_Model2Matrix); /// Converts the 4x4 Model2 matrix to a 3x3
-		/*** If you want to use the trackball use this code instead
-		glUniformMatrix4fv(Model2MatrixID, 1, GL_FALSE, Model2Matrix * Trackball::getInstance()->getMatrix4());
-		***/
+		/// Assigning the 4x4 modelMatrix to the 3x3 normalMatrix 
+		/// copies just the upper 3x3 of the modelMatrix
+	 /// Converts the 4x4 model matrix to a 3x3
+													  /*** If you want to use the trackball use this code instead
+													  glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, modelMatrix * Trackball::getInstance()->getMatrix4());
+													  ***/
 		glUniformMatrix3fv(normalMatrixID, 1, GL_FALSE, normalMatrix);
 
 		glUniform3fv(lightPosID, 1, SceneEnvironment::getInstance()->getLight());

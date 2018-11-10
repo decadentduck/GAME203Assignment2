@@ -1,21 +1,28 @@
 #ifndef BODIES_H
 #define BODIES_H
 #include "Vector.h"
-#include "Model.h"
+#include "Model2.h"
+#include <vector>
 
 namespace GAME
 {
 	class Bodies
 	{
 		friend class BodyModifier;
-	protected:
+	private:
 		Vec3 rotationDirection;
-		float rotationAngle;
-
+		float rotationAngle, scale;
+		Vec3 position, rotation;
+		std::vector<Model2*> models;
 	public:
-		Vec3 position, rotation, scale;
-		Model *model;
-		Bodies(Vec3 pos, Vec3 rot, Vec3 scale_, Model *model_);
+		
+		Bodies(Vec3 pos_, Vec3 rot_, float scale_, std::vector<Model2*> models_);
+		bool onCreate(const char* filename);
+		bool onCreate(const char* filenames[]);
+		void Update(float deltatime);
+		void setPosition(Vec3 position_);
+		void setRotation(Vec3 rotation_);
+		void setScale(float scale_);
 		Bodies();
 		~Bodies();
 	};

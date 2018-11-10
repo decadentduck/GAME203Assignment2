@@ -13,10 +13,11 @@ namespace GAME {
 		friend class BodyModifier;
 	protected:
 		float rotation, scale;
-
+		bool change;
 		class Shader *shader;
 
 		Matrix4 Model2Matrix;
+		
 		std::vector<Mesh*> meshes;
 
 	public:
@@ -31,6 +32,7 @@ namespace GAME {
 
 		void setPos(const Vec3& pos_) override;
 		void setOrientation(const Vec3& orienration_) override;
+		void setScale(const float& scale_);
 
 		virtual bool OnCreate();
 		virtual void OnDestroy();
