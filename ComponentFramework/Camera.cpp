@@ -30,7 +30,7 @@ namespace GAME
 		updateViewMatrix();
 	}
 
-	void Camera::setCamera(const Vec3& eye_, const Vec3& at_, const Vec3& up_)
+	void Camera::SetCamera(const Vec3& eye_, const Vec3& at_, const Vec3& up_)
 	{
 		pos = eye_;
 		at = at_;

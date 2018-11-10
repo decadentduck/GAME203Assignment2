@@ -23,7 +23,7 @@ namespace GAME {
 		void setPos(const Vec3& pos_);
 		void setAt(const Vec3& at_);
 		void setNormal(const Vec3& up_);
-		void setCamera(const Vec3& eye_, const Vec3& at_, const Vec3& up_);
+		void SetCamera(const Vec3& eye_, const Vec3& at_, const Vec3& up_);
 	};
 }
 #endif

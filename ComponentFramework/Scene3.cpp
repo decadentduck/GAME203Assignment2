@@ -7,7 +7,6 @@ using namespace MATH;
 
 Scene3::Scene3(class Window& windowRef) : Scene(windowRef)
 {
-	trackball = new Trackball();
 	//projectionMatrix.loadIdentity();
 	//viewMatrix.loadIdentity();
 	glEnable(GL_DEPTH_TEST);
@@ -21,13 +20,22 @@ Scene3::~Scene3()
 
 bool Scene3::OnCreate()
 {
+	camera = nullptr;
 	lightPos = Vec3(10.0f, 3.0f, 10.0f);
+	/// Load Assets: as needed 
+	
 	CreateForest();
 
 	eye = Vec3(0.0f, 3.0f, 10.0f);
 	at = Vec3(0.0f, 0.0f, 0.0f);
 	up = Vec3(0.0f, 1.0f, 0.0f);
-	//Camera::GetInstance()->SetLookAt(eye, at, up);
+
+	if (addModel("Tree1.obj") == false) { return false; }
+
+	/// Create a shader with attributes
+	SceneEnvironment::getInstance()->setLight(Vec3(0.0f, 3.0f, 7.0f));
+
+	OnResize(windowPtr->getWidth(), windowPtr->getHeight());
 	return true;
 }
 
@@ -49,16 +57,22 @@ void Scene3::CreateForest()
 
 void Scene3::OnResize(int w_, int h_)
 {
-	/*windowPtr->SetWindowSize(w_, h_);
-	glViewport(0, 0, windowPtr->GetWidth(), windowPtr->GetHeight());
-	float aspect = float(windowPtr->GetWidth()) / float(windowPtr->GetHeight());
+	windowPtr->setWindowSize(w_, h_);
+	glViewport(0, 0, windowPtr->getWidth(), windowPtr->getHeight());
+	if (camera) delete camera;
+	camera = new Camera(w_, h_, Vec3(0.0f, 0.0f, 10.0f));
+	Camera::currentCamera = camera;
+}
 
-	projectionMatrix = MMath::perspective(45.0f, aspect, 1.0f, 100.0f);
+bool GAME::Scene3::addModel(const char* filename)
+{
+	models.push_back(new Model1(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 90.0f, 0.05f));
+	models[models.size() - 1]->OnCreate();
 
-	viewMatrix = MMath::lookAt(
-		Vec3(0.0f, 0.0f, 10.0f),
-		Vec3(0.0f, 0.0f, 0.0f),
-		Vec3(0.0f, 1.0f, 0.0f));*/
+	if (models[models.size() - 1]->LoadMesh(filename) == false) {
+		return false;
+	}
+	return true;
 }
 
 void Scene3::OnDestroy()
@@ -66,18 +80,25 @@ void Scene3::OnDestroy()
 	//TODO delete trees array	
 }
 
-void Scene3::Update(const float deltaTime)
+void Scene3::Update(const float deltaTime) 
 {
-	//TODO camera position via handle events
+	for (Model1* model : models) {
+		model->Update(deltaTime);
+	}
 }
 
-void Scene3::Render() const
+void Scene3::Render() const 
 {
-	//TODO Draw the trees in array
-	/*glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	bodies[0]->model->SetLightPos(lightPos);
-	bodies[0]->model->Render(Camera::GetInstance()->GetProjection(), Camera::GetInstance()->GetView(), Matrix3());
-	SDL_GL_SwapWindow(windowPtr->getSDLWindow());*/
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	/// Draw your scene here
+	for (Model1* model : models) {
+		model->Render();
+	}
+	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
+
 }
 
 void Scene3::HandleEvents(const SDL_Event& SDLEvent)
@@ -85,26 +106,27 @@ void Scene3::HandleEvents(const SDL_Event& SDLEvent)
 	//Handle camera via keyboard input
 	if (SDLEvent.type == SDL_KEYUP)
 	{
-		/*switch (SDLEvent.key.keysym.sym)
+		switch (SDLEvent.key.keysym.sym)
 		{
 		case SDLK_UP:
 			eye = MMath::translate(0.0f, 0.0f, -1.0f) * eye;
-			Camera::GetInstance()->SetLookAt(eye, at, up);
+			camera->SetCamera(eye, at, up);
 			break;
 		case SDLK_DOWN:
 			eye = MMath::translate(0.0f, 0.0f, 1.0f) * eye;
-			Camera::GetInstance()->SetLookAt(eye, at, up);
+			camera->SetCamera(eye, at, up);
 			break;
 		case SDLK_LEFT:
 			at = MMath::translate(-1.0f, 0.0f, 0.0f) * at;
-			Camera::GetInstance()->SetLookAt(eye, at, up);
+			camera->SetCamera(eye, at, up);
 			break;
 		case SDLK_RIGHT:
 			at = MMath::translate(1.0f, 0.0f, 0.0f) * at;
-			Camera::GetInstance()->SetLookAt(eye, at, up);
+			camera->SetCamera(eye, at, up);
 			break;
 		default:
 			break;
-		}*/
+		}
+		Camera::currentCamera = camera;
 	}
 }

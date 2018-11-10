@@ -7,7 +7,7 @@
 #include "Scene0.h"
 #include "SceneEnvironment.h"
 #include "Trackball.h"
-
+#include "Model1.h"
 #include "ObjLoader.h"
 
 using namespace GAME;
@@ -96,8 +96,8 @@ Scene0::~Scene0() {
 
 void Scene0::OnDestroy() {
 	/// Cleanup Assets
-	if (camera) delete camera;
+	if (camera) camera = nullptr; delete camera;
 	for (Model* model : models) {
-		if (model) delete model;
+		if (model) model = nullptr; delete model;
 	}
 }
