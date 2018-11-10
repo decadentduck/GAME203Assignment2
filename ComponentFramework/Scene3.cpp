@@ -21,7 +21,7 @@ Scene3::Scene3(Window& windowRef) :Scene(windowRef) { }
 bool Scene3::OnCreate()
 {
 	eye = Vec3(0.0f, 0.0f, 10.0f);
-	at = Vec3(0.0f, 0.0f, 0.0f);
+	at = Vec3(0.0f, 0.0f, -1.0f);
 	up = Vec3(0.0f, 1.0f, 0.0f);
 	camera = nullptr;
 
@@ -45,9 +45,9 @@ void Scene3::CreateForest()
 bool GAME::Scene3::addModel(const char* filename)
 {
 	
-
-	Vec3 pos = Vec3(Random(10, 100), 0, Random(10, 100));
-	float rot = 0;// Random(1, 360);
+	Vec3 pos = Vec3(r.rand(1.0, 10.0), 0, r.rand(1.0, 10.0));
+	float rot = r.rand(1, 360);
+	pos.print();
 	float scale = 0.05f;
 	models.push_back(new Model(pos, Vec3(0.0f, 0.0f, 0.0f), rot, scale));
 	models[models.size() - 1]->OnCreate();
@@ -89,22 +89,24 @@ void Scene3::HandleEvents(const SDL_Event& SDLEvent)
 {
 	
 	//Handle camera via keyboard input
-	if (SDLEvent.type == SDL_KEYUP)
+	if (SDLEvent.type == SDL_KEYDOWN)
 	{
 		printf("KEYPRESS\n");
 		switch (SDLEvent.key.keysym.sym)
 		{
 		case SDLK_UP:
 			eye = MMath::translate(0.0f, 0.0f, -1.0f) * eye;
+			at = MMath::translate(0.0f, 0.0f, -1.0f) * at;
 			break;
 		case SDLK_DOWN:
 			eye = MMath::translate(0.0f, 0.0f, 1.0f) * eye;
+			at = MMath::translate(0.0f, 0.0f, 1.0f) * at;
 			break;
 		case SDLK_LEFT:
-			at = MMath::translate(-1.0f, 0.0f, 0.0f) * at;
+			at = MMath::rotate(5, 0.0f, 1.0f, 0.0f) * at;
 			break;
 		case SDLK_RIGHT:
-			at = MMath::translate(1.0f, 0.0f, 0.0f) * at;
+			at = MMath::rotate(-5, 0.0f, 1.0f, 0.0f) * at;
 			break;
 		default:
 			break;
@@ -112,14 +114,6 @@ void Scene3::HandleEvents(const SDL_Event& SDLEvent)
 		camera->SetCamera(eye, at, up);
 		Camera::currentCamera = camera;
 	}
-}
-
-float Scene3::Random(float min, float max)
-{
-	std::mt19937 rng;
-	rng.seed(std::random_device()());
-	std::uniform_int_distribution<std::mt19937::result_type> dist(min, max);
-	return(dist(rng));
 }
 
 Scene3::~Scene3()

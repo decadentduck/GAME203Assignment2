@@ -4,13 +4,14 @@
 #include "Scene.h"
 #include "Model.h"
 #include "Camera.h"
+#include "Randomizer.h"
 
 namespace GAME {
 	class Window; /// Forward declaration
 
 	class Scene3 : public Scene {
 	protected:
-
+		Randomizer r;
 		bool addModel(const char* filename);
 
 	public:
