@@ -96,8 +96,16 @@ Scene0::~Scene0() {
 
 void Scene0::OnDestroy() {
 	/// Cleanup Assets
-	if (camera) camera = nullptr; delete camera;
+	if (camera)
+	{
+		camera = nullptr;
+		delete camera;
+	}
 	for (Model* model : models) {
-		if (model) model = nullptr; delete model;
+		if (model)
+		{
+			model = nullptr;
+			delete model;
+		}
 	}
 }

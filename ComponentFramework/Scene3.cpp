@@ -77,7 +77,12 @@ bool GAME::Scene3::addModel(const char* filename)
 
 void Scene3::OnDestroy()
 {
-	//TODO delete trees array	
+	/// Cleanup Assets
+	if (camera) camera = nullptr; delete camera;
+	for (Model1* model : models) 
+	{
+		if (model) model = nullptr; delete model;
+	}
 }
 
 void Scene3::Update(const float deltaTime) 
