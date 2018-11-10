@@ -46,7 +46,7 @@ bool GAME::Scene3::addModel(const char* filename)
 {
 	
 
-	Vec3 pos = Vec3(Random(1, 10), 0, Random(1, 10));
+	Vec3 pos = Vec3(Random(10, 100), 0, Random(10, 100));
 	float rot = 0;// Random(1, 360);
 	float scale = 0.05f;
 	models.push_back(new Model(pos, Vec3(0.0f, 0.0f, 0.0f), rot, scale));
