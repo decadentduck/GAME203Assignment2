@@ -1,5 +1,5 @@
-#ifndef MODEL_H
-#define MODEL_H
+#ifndef Model1_H
+#define Model1_H
 #include <vector>
 #include "MMath.h"
 #include "Mesh.h"
@@ -9,25 +9,25 @@ namespace GAME {
 
 	using namespace MATH;
 
-	class Model : public Entity {
+	class Model1 : public Entity {
 		friend class BodyModifier;
 	protected:
 		float rotation, scale;
 
 		class Shader *shader;
 
-		Matrix4 modelMatrix;
+		Matrix4 Model1Matrix;
 		std::vector<Mesh*> meshes;
 
 	public:
-		Model(const Vec3 _pos, const Vec3 _orientation);
-		Model(const Vec3 _pos, const Vec3 _orientation, const float rotation_, const float scale_);
-		Model(const Model&) = delete;
-		Model(Model&&) = delete;
-		Model& operator = (const Model&) = delete;
-		Model& operator = (Model&&) = delete;
+		Model1(const Vec3 _pos, const Vec3 _orientation);
+		Model1(const Vec3 _pos, const Vec3 _orientation, const float rotation_, const float scale_);
+		Model1(const Model1&) = delete;
+		Model1(Model1&&) = delete;
+		Model1& operator = (const Model1&) = delete;
+		Model1& operator = (Model1&&) = delete;
 
-		virtual ~Model();
+		virtual ~Model1();
 
 		void setPos(const Vec3& pos_) override;
 		void setOrientation(const Vec3& orienration_) override;
@@ -41,7 +41,7 @@ namespace GAME {
 
 	protected:
 
-		void updateModelMatrix();
+		void updateModel1Matrix();
 	};
 } /// end of namespace
 

@@ -1,4 +1,4 @@
-#include "Model.h"
+#include "Model1.h"
 #include "Shader.h"
 #include "ObjLoader.h"
 #include "Camera.h"
@@ -7,7 +7,7 @@
 
 namespace GAME {
 
-	Model::Model(const Vec3 pos_, const Vec3 orientation_) {
+	Model1::Model1(const Vec3 pos_, const Vec3 orientation_) {
 		pos = pos_;
 		orientation = orientation_;
 		rotation = 0.0f;
@@ -15,7 +15,7 @@ namespace GAME {
 		shader = nullptr;
 	}
 
-	Model::Model(const Vec3 pos_, const Vec3 orientation_, const float rotation_, const float scale_) {
+	Model1::Model1(const Vec3 pos_, const Vec3 orientation_, const float rotation_, const float scale_) {
 		pos = pos_;
 		orientation = orientation_;
 		rotation = rotation_;
@@ -23,35 +23,35 @@ namespace GAME {
 		shader = nullptr;
 	}
 
-	Model::~Model() {
+	Model1::~Model1() {
 		OnDestroy();
 	}
 
-	void Model::setPos(const Vec3& pos_) {
+	void Model1::setPos(const Vec3& pos_) {
 		Entity::setPos(pos_);
-		updateModelMatrix();
+		updateModel1Matrix();
 	}
 
-	void Model::setOrientation(const Vec3& orientation_) {
+	void Model1::setOrientation(const Vec3& orientation_) {
 		Entity::setOrientation(orientation_);
-		updateModelMatrix();
+		updateModel1Matrix();
 	}
 
-	void Model::updateModelMatrix() {
-		modelMatrix = MMath::translate(pos);
+	void Model1::updateModel1Matrix() {
+		Model1Matrix = MMath::translate(pos);
 
 		/// This transform is based on Euler angles - let's do it later
-		///modelMatrix = MMath::translate(pos) * MMath::rotate(orientation.z, Vec3(0.0f, 0.0f, 1.0f)) * MMath::rotate(orientation.x, Vec3(1.0f, 0.0f, 0.0f)) * MMath::rotate(orientation.y, Vec3(0.0f, 1.0f, 0.0f));
+		///Model1Matrix = MMath::translate(pos) * MMath::rotate(orientation.z, Vec3(0.0f, 0.0f, 1.0f)) * MMath::rotate(orientation.x, Vec3(1.0f, 0.0f, 0.0f)) * MMath::rotate(orientation.y, Vec3(0.0f, 1.0f, 0.0f));
 	}
 
-	bool Model::OnCreate() {
+	bool Model1::OnCreate() {
 		shader = new Shader("phongVert.glsl", "phongFrag.glsl", 3, 0, "vVertex", 1, "vNormal", 2, "texCoords");
 		return true;
 	}
 
 
 
-	bool Model::LoadMesh(const char* filename) {
+	bool Model1::LoadMesh(const char* filename) {
 		if (ObjLoader::loadOBJ(filename) == false) {
 			return false;
 		}
@@ -61,16 +61,16 @@ namespace GAME {
 	}
 
 
-	void Model::Update(const float deltaTime) {
+	void Model1::Update(const float deltaTime) {
 		/// See Entity.h
 		///Rotate(Vec3(0.0f, 50.0f * deltaTime, 0.0f));
 	}
 
-	void Model::Render() const {
+	void Model1::Render() const {
 
 		GLint projectionMatrixID = glGetUniformLocation(shader->getProgram(), "projectionMatrix");
 		GLint viewMatrixID = glGetUniformLocation(shader->getProgram(), "viewMatrix");
-		GLint modelMatrixID = glGetUniformLocation(shader->getProgram(), "modelMatrix");
+		GLint Model1MatrixID = glGetUniformLocation(shader->getProgram(), "Model1Matrix");
 		GLint normalMatrixID = glGetUniformLocation(shader->getProgram(), "normalMatrix");
 		GLint lightPosID = glGetUniformLocation(shader->getProgram(), "lightPos");
 
@@ -78,17 +78,17 @@ namespace GAME {
 
 		glUniformMatrix4fv(projectionMatrixID, 1, GL_FALSE, Camera::currentCamera->getProjectionMatrix());
 		glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, Camera::currentCamera->getViewMatrix());
-		Matrix4 _modelMatrix = MMath::rotate(rotation, 0.0f, 1.0f, 0.0f) * MMath::scale(scale, scale, scale) * MMath::translate(-10.0f, -30.0f, 0.0f);
-		glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, _modelMatrix);
+		Matrix4 _Model1Matrix = MMath::rotate(rotation, 0.0f, 1.0f, 0.0f) * MMath::scale(scale, scale, scale) * MMath::translate(-10.0f, -30.0f, 0.0f);
+		glUniformMatrix4fv(Model1MatrixID, 1, GL_FALSE, _Model1Matrix);
 		/*** If you want to use the trackball use this code instead
-		glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, modelMatrix * Trackball::getInstance()->getMatrix4());
+		glUniformMatrix4fv(Model1MatrixID, 1, GL_FALSE, Model1Matrix * Trackball::getInstance()->getMatrix4());
 		***/
 
-		/// Assigning the 4x4 modelMatrix to the 3x3 normalMatrix 
-		/// copies just the upper 3x3 of the modelMatrix
-		Matrix3 normalMatrix = Matrix3(_modelMatrix); /// Converts the 4x4 model matrix to a 3x3
+		/// Assigning the 4x4 Model1Matrix to the 3x3 normalMatrix 
+		/// copies just the upper 3x3 of the Model1Matrix
+		Matrix3 normalMatrix = Matrix3(_Model1Matrix); /// Converts the 4x4 Model1 matrix to a 3x3
 		/*** If you want to use the trackball use this code instead
-		glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, modelMatrix * Trackball::getInstance()->getMatrix4());
+		glUniformMatrix4fv(Model1MatrixID, 1, GL_FALSE, Model1Matrix * Trackball::getInstance()->getMatrix4());
 		***/
 		glUniformMatrix3fv(normalMatrixID, 1, GL_FALSE, normalMatrix);
 
@@ -100,7 +100,7 @@ namespace GAME {
 
 
 	}
-	void Model::OnDestroy() {
+	void Model1::OnDestroy() {
 		if (shader) delete shader;
 	}
 }
