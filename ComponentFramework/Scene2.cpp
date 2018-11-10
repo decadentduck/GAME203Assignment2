@@ -1,22 +1,28 @@
 #include "Scene2.h"
-
+#include <GL/glew.h>
+#include <SDL.h>
+#include <iostream>
+#include "MMath.h"
+#include "Window.h"
+#include "Shader.h"
+#include "SceneEnvironment.h"
+#include "Trackball.h"
+#include "Model1.h"
+#include "ObjLoader.h"
+#include "Bodies.h"
 using namespace GAME;
 using namespace MATH;
 
 Scene2::Scene2(class Window& windowRef) : Scene(windowRef)
 {
+	
 	trackball = new Trackball();
 	//projectionMatrix.loadIdentity();
 	//viewMatrix.loadIdentity();
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	//ProjectionMatrix:: close = 0.75f && far = 100.0f
-	currentCamera = new //Camera::Camera(ViewportWidth, ViewportHeight, CameraPosition)
-		Camera
-		(
-			//ViewportWidth           ViewportHeight        CameraPosition
-			windowRef.getWidth(), windowRef.getHeight(), Vec3(0.0f, 0.0f, 0.0f)
-		);
+
 }
 
 Scene2::~Scene2()
@@ -26,69 +32,167 @@ Scene2::~Scene2()
 
 bool Scene2::OnCreate()
 {
-	Model *m = nullptr;
-	/* Re-adjusts Camera in case scene is changed   */	
-	
-	
-	
+	/// Load Assets: as needed 
+	if (addModel("Tree1.obj") == false) {
+		return false;
+	}
 	eye = Vec3(0.0f, 3.0f, 10.0f);
 	at = Vec3(0.0f, 0.0f, 0.0f);
 	up = Vec3(0.0f, 1.0f, 0.0f);
+	if (addReferenceModel("skull.obj",at) == false)
+	{
+		return false;
+	}
 	
 	Vec3 pos = Vec3(0.0f, 0.0f, 0.0f);
 	Vec3 rot = Vec3(0.0f, 0.0f, 0.0f);
 	Vec3 vel = Vec3(0.0f, 0.0f, 0.0f);
 	lightPos = Vec3(10.0f, 3.0f, 10.0f);
 
-	m->setPos(pos);
+	/*Add Models*/
 
-	body = new Bodies(pos, rot, Vec3(1.0f, 1.0f,1.0f), m);
+//	body = new Bodies(pos, rot, Vec3(1.0f, 1.0f,1.0f), models);
+	SceneEnvironment::getInstance()->setLight(Vec3(0.0f, 3.0f, 7.0f));
+	OnResize(windowPtr->getWidth(), windowPtr->getHeight());
 	return true;
 }
 
 
 void Scene2::OnResize(int w_, int h_)
 {
-	currentCamera = new Camera(w_, h_, Vec3(0.0f, 0.0f, 0.0f));
-	//windowPtr->SetWindowSize(w_, h_);
-	//glViewport(0, 0, windowPtr->GetWidth(), windowPtr->GetHeight());
-	//float aspect = float(windowPtr->GetWidth()) / float(windowPtr->GetHeight());
+	//Updating Window Size
+	windowPtr->setWindowSize(w_, h_);
+	glViewport(0, 0, windowPtr->getWidth(), windowPtr->getHeight());
+	//Updating Camera
+	if (camera) delete camera;
+	camera = new Camera(w_, h_, Vec3(0.0f, 0.0f, 10.0f));
+	Camera::currentCamera = camera;
+	Trackball::getInstance()->setWindowDimensions(windowPtr->getWidth(), windowPtr->getHeight());
 
-	//projectionMatrix = MMath::perspective(45.0f, aspect, 1.0f, 100.0f);
-	////position , at , up
-	//viewMatrix = MMath::lookAt(Vec3(0.0f, 0.0f, 100.0f),
-	//							Vec3(0.0f, 0.0f, 0.0f),
-	//							Vec3(0.0f, 1.0f, 0.0f));
+	
 }
 
 void Scene2::OnDestroy()
 {
-	//Delete All Pointers
+	if (camera)
+	{
+		camera = nullptr;
+		delete camera;
+	}
+	for (Model2* model : models) {
+		if (model)
+		{
+			model = nullptr;
+			delete model;
+		}
+	}
 }
 
 void Scene2::Update(const float deltaTime)
 {
-
+	for (Model2* model : models) {
+		model->Update(deltaTime);
+	}
+	
+	
+	
 }
 
 void Scene2::Render() const
 {
-	/*glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	body->model->SetLightPos(viewMatrix * lightPos);
-	body->model->Render(projectionMatrix, trackball->GetMatrix4() *  viewMatrix, trackball->GetMatrix3());
-	SDL_GL_SwapWindow(windowPtr->getSDLWindow());*/
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	/// Draw your scene here
+	for (Model2* model : models) {
+		model->Render();
+	}
+	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
+
 }
 
 void Scene2::HandleEvents(const SDL_Event& SDLEvent)
 {
-	/*if (SDLEvent.type == SDL_EventType::SDL_MOUSEBUTTONDOWN)
+	if (SDLEvent.type == SDL_KEYDOWN)
 	{
-		trackball->OnLeftMouseDown(SDLEvent.button.x, SDLEvent.button.y);
+		switch (SDLEvent.key.keysym.sym)
+		{
+		case SDLK_w:
+			eye = MMath::translate(0.0f, 0.0f, -1.0f) * eye;
+			at = MMath::translate(0.0f, 0.0f, -1.0f) * at;
+			camera->SetCamera(eye, at, up);
+			break;
+		case SDLK_s:
+			eye = MMath::translate(0.0f, 0.0f, 1.0f) * eye;
+			at = MMath::translate(0.0f, 0.0f, 1.0f) * at;
+			camera->SetCamera(eye, at, up);
+			break;
+		case SDLK_a:
+			eye = MMath::translate(-1.0f, 0.0f, 0.0f) * eye;
+			at = MMath::translate(-1.0f, 0.0f, 0.0f) * at;
+			camera->SetCamera(eye, at, up);
+			break;
+		case SDLK_d:
+			eye = MMath::translate(1.0f, 0.0f, 0.0f) * eye;
+			at = MMath::translate(1.0f, 0.0f, 0.0f) * at;
+			camera->SetCamera(eye, at, up);
+			break;
+		case SDLK_UP:
+			at = MMath::rotate(3, Vec3(1.0f, 0.0f, 0.0f))  * at;
+			camera->SetCamera(eye, at, up);
+			break;
+		case SDLK_DOWN:
+			at = MMath::rotate(3, Vec3(-1.0f, 0.0f, 0.0f))  * at;
+			camera->SetCamera(eye, at, up);
+			break;
+		case SDLK_LEFT:
+			at = MMath::rotate(3, Vec3(0.0f, -1.0f, 0.0f)) * at;
+			camera->SetCamera(eye, at, up);
+			break;
+		case SDLK_RIGHT:
+			at = MMath::rotate(3, Vec3(0.0f, 1.0f, 0.0f))* at;
+			camera->SetCamera(eye, at, up);
+			break;
+		default:
+			break;
+		}
+		Camera::currentCamera = camera;
+		printf("Camera: [%f,%f,%f][%f,%f,%f][%f,%f,%f]\n", eye.x, eye.y, eye.z, at.x, at.y, at.z, up.x, up.y, up.z);
+		
+		
 	}
-	if (SDLEvent.type == SDL_EventType::SDL_MOUSEMOTION &&
-		SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
-	{
-		trackball->OnMouseMove(SDLEvent.button.x, SDLEvent.button.y);
-	}*/
+	if (SDLEvent.type == SDL_EventType::SDL_MOUSEBUTTONDOWN) {
+		Trackball::getInstance()->onLeftMouseDown(SDLEvent.button.x, SDLEvent.button.y);
+	}
+	else if (SDLEvent.type == SDL_EventType::SDL_MOUSEBUTTONUP) {
+		Trackball::getInstance()->onLeftMouseUp(SDLEvent.button.x, SDLEvent.button.y);
+	}
+	else if (SDLEvent.type == SDL_EventType::SDL_MOUSEMOTION &&
+		SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
+		Trackball::getInstance()->onMouseMove(SDLEvent.button.x, SDLEvent.button.y);
+	}
 
+}
+
+bool GAME::Scene2::addModel(const char* filename)
+{
+	models.push_back(new Model2(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 90.0f, 0.05f));
+	models[models.size() - 1]->OnCreate();
+
+	if (models[models.size() - 1]->LoadMesh(filename) == false) {
+		return false;
+	}
+	return true;
+}
+
+bool GAME::Scene2::addReferenceModel(const char* filename, Vec3 at_)
+{
+	models.push_back(new Model2(at_, Vec3(0.0f, 0.0f, 0.0f), 90.0f, 0.5f));
+	models[models.size() - 1]->OnCreate();
+	refNumber = models.size() - 1;
+	if (models[models.size() - 1]->LoadMesh(filename) == false) {
+		return false;
+	}
+	return true;
 }

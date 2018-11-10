@@ -31,6 +31,7 @@ namespace GAME {
 
 		void setPos(const Vec3& pos_) override;
 		void setOrientation(const Vec3& orienration_) override;
+		void setScale(const float& scale_);
 
 		virtual bool OnCreate();
 		virtual void OnDestroy();
