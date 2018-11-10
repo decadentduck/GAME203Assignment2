@@ -11,8 +11,8 @@ Scene2::Scene2(class Window& windowRef) : Scene(windowRef)
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	//ProjectionMatrix:: close = 0.75f && far = 100.0f
-	currentCamera() = //Camera::Camera(ViewportWidth, ViewportHeight, CameraPosition)
-		Camera::Camera
+	currentCamera = new //Camera::Camera(ViewportWidth, ViewportHeight, CameraPosition)
+		Camera
 		(
 			//ViewportWidth           ViewportHeight        CameraPosition
 			windowRef.getWidth(), windowRef.getHeight(), Vec3(0.0f, 0.0f, 0.0f)
@@ -26,7 +26,7 @@ Scene2::~Scene2()
 
 bool Scene2::OnCreate()
 {
-	Model *m;
+	Model *m = nullptr;
 	/* Re-adjusts Camera in case scene is changed   */	
 	
 	
@@ -49,7 +49,7 @@ bool Scene2::OnCreate()
 
 void Scene2::OnResize(int w_, int h_)
 {
-	currentCamera() = Camera::Camera(w_, h_, Vec3(0.0f, 0.0f, 0.0f));
+	currentCamera = new Camera(w_, h_, Vec3(0.0f, 0.0f, 0.0f));
 	//windowPtr->SetWindowSize(w_, h_);
 	//glViewport(0, 0, windowPtr->GetWidth(), windowPtr->GetHeight());
 	//float aspect = float(windowPtr->GetWidth()) / float(windowPtr->GetHeight());

@@ -22,7 +22,7 @@ namespace GAME
 	{
 	protected:
 		Vec3 eye, at, up;
-		Camera currentCamera();
+		Camera *currentCamera;
 	public:
 		explicit Scene2(Window& windowRef);
 		virtual ~Scene2();
