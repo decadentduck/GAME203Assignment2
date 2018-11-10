@@ -90,18 +90,21 @@ void Scene0::HandleEvents(const SDL_Event& SDLEvent) {
 
 }
 
-Scene0::~Scene0() {
+Scene0::~Scene0() 
+{
 	OnDestroy();
 }
 
-void Scene0::OnDestroy() {
+void Scene0::OnDestroy() 
+{
 	/// Cleanup Assets
 	if (camera)
 	{
 		camera = nullptr;
 		delete camera;
 	}
-	for (Model* model : models) {
+	for (Model* model : models) 
+	{
 		if (model)
 		{
 			model = nullptr;

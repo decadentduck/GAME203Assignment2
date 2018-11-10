@@ -1,32 +1,28 @@
 #ifndef Scene3_H
 #define Scene3_H
-#define NUM_TREES 20
-#include <GL/glew.h>
-#include <SDL.h>
+
 #include "Scene.h"
-#include "Window.h"
-#include <iostream>
-#include "MMath.h"
-#include "QuadSphere.h"
-#include "SceneEnvironment.h"
-#include "Bodies.h"
-#include "Model1.h"
-#include "Model2.h"
+#include "Model.h"
 #include "Camera.h"
 
-//forest of trees assignment
-namespace GAME
-{
-	/// Forward casting
-	class Trackball;
+namespace GAME {
+	class Window; /// Forward declaration
 
-	class Scene3 : public Scene
-	{
+	class Scene3 : public Scene {
 	protected:
+
 		bool addModel(const char* filename);
+
 	public:
 		explicit Scene3(Window& windowRef);
 		virtual ~Scene3();
+
+		/// Delete these possible default constructors and operators  
+		Scene3(const Scene3&) = delete;
+		Scene3(Scene3 &&) = delete;
+		Scene3& operator=(const Scene3 &) = delete;
+		Scene3& operator=(Scene3 &&) = delete;
+
 		virtual bool OnCreate();
 		virtual void OnDestroy();
 		virtual void Update(const float deltaTime);
@@ -35,11 +31,11 @@ namespace GAME
 		virtual void OnResize(const int, const int);
 
 	private:
-		Vec3 eye, at, up;
-		std::vector<Model1*> models;
+		std::vector<Model*> models;
 		Camera* camera;
+		Vec3 eye, at, up;
 		void CreateForest();
-		Vec3 lightPos;
+		float Random(float min, float max);
 	};
 }
 #endif

@@ -78,15 +78,15 @@ namespace GAME {
 
 		glUniformMatrix4fv(projectionMatrixID, 1, GL_FALSE, Camera::currentCamera->getProjectionMatrix());
 		glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, Camera::currentCamera->getViewMatrix());
-		Matrix4 _Model1Matrix = MMath::rotate(rotation, 0.0f, 1.0f, 0.0f) * MMath::scale(scale, scale, scale) * MMath::translate(-10.0f, -30.0f, 0.0f);
-		glUniformMatrix4fv(Model1MatrixID, 1, GL_FALSE, _Model1Matrix);
+		Matrix4 _ModelMatrix = MMath::rotate(rotation, 0.0f, 1.0f, 0.0f) * MMath::scale(scale, scale, scale) * MMath::translate(-10.0f, -30.0f, 0.0f);
+		glUniformMatrix4fv(Model1MatrixID, 1, GL_FALSE, _ModelMatrix);
 		/*** If you want to use the trackball use this code instead
-		glUniformMatrix4fv(Model1MatrixID, 1, GL_FALSE, Model1Matrix * Trackball::getInstance()->getMatrix4());
+		glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, Model1Matrix * Trackball::getInstance()->getMatrix4());
 		***/
 
 		/// Assigning the 4x4 Model1Matrix to the 3x3 normalMatrix 
 		/// copies just the upper 3x3 of the Model1Matrix
-		Matrix3 normalMatrix = Matrix3(_Model1Matrix); /// Converts the 4x4 Model1 matrix to a 3x3
+		Matrix3 normalMatrix = Matrix3(_ModelMatrix); /// Converts the 4x4 Model1 matrix to a 3x3
 		/*** If you want to use the trackball use this code instead
 		glUniformMatrix4fv(Model1MatrixID, 1, GL_FALSE, Model1Matrix * Trackball::getInstance()->getMatrix4());
 		***/
