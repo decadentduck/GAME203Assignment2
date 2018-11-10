@@ -108,6 +108,7 @@ void GameSceneManager::HandleEvents(){
 				break;
 			
 			default:  
+				currentScene->HandleEvents(SDLEvent);
 				break;
 		}
 	}
