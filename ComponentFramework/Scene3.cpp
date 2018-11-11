@@ -11,6 +11,15 @@
 #include "Model1.h"
 #include "ObjLoader.h"
 
+/*
+BRIEF:
+The assignment was to create a forest of somewhat unique looking trees and a camera controlled with keyboard input. 
+My solution was to render many instances of 2 models. I’ve made the trees appear to be unique by randomizing the 
+position, rotation and scale of each tree. I’ve solved the camera part by altering the first 2 vectors of a look 
+at matrix based on keyboard input. The up and down arrows alter the first vector and the left and right arrows 
+change the second vector.
+*/
+
 using namespace GAME;
 using namespace MATH;
 
@@ -25,8 +34,9 @@ bool Scene3::OnCreate()
 	up = Vec3(0.0f, 1.0f, 0.0f);
 	camera = nullptr;
 
-	if (!addModel("plane.obj")) return false;
-	CreateForest();
+	if (!addModel("Plane.obj")) return false;
+
+	//CreateForest();
 
 	/// Create a shader with attributes
 	SceneEnvironment::getInstance()->setLight(Vec3(0.0f, 10.0f, 0.0f));
@@ -39,14 +49,14 @@ bool Scene3::CreateForest()
 {
 	for (int i = 0; i < 50; i++) 
 	{ 
-		int tree = r.rand(1, 3);
+		int tree = r.rand(1, 4);
 		if (tree == 1) 
 		{
-			if(!addModel("Tree1.obj")) return false; 
+			if(!addModel("Tree2.obj")) return false; 
 		}
 		else
 		{
-			if (!addModel("Tree2.obj")) return false;
+			if (!addModel("Tree1.obj")) return false;
 		}
 	}
 	return true;
@@ -54,12 +64,9 @@ bool Scene3::CreateForest()
 
 bool GAME::Scene3::addModel(const char* filename)
 {
-	if (filename == "plane.obj")
+	if (filename == "Plane.obj")
 	{
-		Vec3 pos = Vec3(0.0f, 0.0f, 0.0f);
-		float rot = 0.0f;
-		Vec3 scale = Vec3(10.0f, 10.0f, 10.0f);
-		models.push_back(new Model(pos, Vec3(0.0f, 0.0f, 0.0f), rot, scale));
+		models.push_back(new Model(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 0.0f, Vec3(1.0f, 1.0f, 1.0f)));
 		models[models.size() - 1]->OnCreate();
 
 		if (models[models.size() - 1]->LoadMesh(filename) == false)
