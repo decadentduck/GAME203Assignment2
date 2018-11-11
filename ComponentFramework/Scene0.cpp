@@ -33,6 +33,8 @@ bool Scene0::OnCreate() {
 	SceneEnvironment::getInstance()->setLight(Vec3(0.0f, 3.0f, 7.0f));
 
 	OnResize(windowPtr->getWidth(), windowPtr->getHeight());
+
+	printf("ENTER THE NUMBER '1' '2' or '3' to view assignments 1, 2 and 3");
 	return true;
 }
 
