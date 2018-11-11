@@ -13,6 +13,7 @@
 #include "QuadSphere.h"
 #include "Trackball.h"
 #include "Object.h"
+#include "Camera.h"
 
 using namespace std;
 ///Gamescene assignment
@@ -37,7 +38,7 @@ namespace GAME
 		virtual void OnResize(const int, const int);
 		class Object* Objects[NUM_OBJECTS];
 		
-		ifstream fin;
+		ifstream fileInput;
 		std::string next, name, filename;
 		int pX, pY, pZ, rX, rY, rZ, loc_end, loc_name, loc_pX, loc_pY, loc_pZ, loc_rX, loc_rY, loc_rZ;
 
@@ -46,6 +47,7 @@ namespace GAME
 		Model *model;
 		Trackball *trackball;
 		int activeScene, loadedScene;
+		Camera *camera = nullptr;
 	};
 }
 #endif
