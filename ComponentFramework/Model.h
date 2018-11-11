@@ -12,7 +12,8 @@ namespace GAME {
 	class Model : public Entity {
 		friend class BodyModifier;
 	protected:
-		float rotation, scale;
+		float rotation;
+		Vec3 scale;
 
 		class Shader *shader;
 
@@ -21,7 +22,7 @@ namespace GAME {
 
 	public:
 		Model(const Vec3 _pos, const Vec3 _orientation);
-		Model(const Vec3 _pos, const Vec3 _orientation, const float rotation_, const float scale_);
+		Model(const Vec3 _pos, const Vec3 _orientation, const float rotation_, const Vec3 scale_);
 		Model(const Model&) = delete;
 		Model(Model&&) = delete;
 		Model& operator = (const Model&) = delete;
