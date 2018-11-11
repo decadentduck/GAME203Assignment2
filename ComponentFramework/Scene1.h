@@ -31,7 +31,7 @@ namespace GAME
 	public:
 		explicit Scene1(Window& windowRef);
 		virtual ~Scene1();
-		virtual bool OnCreate(int scene);
+		virtual bool OnCreate();
 		virtual void OnDestroy();
 		virtual void Update(const float deltaTime);
 		virtual void Render() const;
@@ -46,6 +46,7 @@ namespace GAME
 		int pX, pY, pZ, rX, rY, rZ, loc_end, loc_name, loc_pX, loc_pY, loc_pZ, loc_rX, loc_rY, loc_rZ;
 
 	private:
+		bool LoadFile(string fileName);
 		Vec3 lightPos;
 		Model *model;
 		Trackball *trackball;
