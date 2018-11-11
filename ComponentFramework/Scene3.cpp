@@ -25,6 +25,7 @@ bool Scene3::OnCreate()
 	up = Vec3(0.0f, 1.0f, 0.0f);
 	camera = nullptr;
 
+	if (!addModel("plane.obj")) return false;
 	CreateForest();
 
 	/// Create a shader with attributes
@@ -53,18 +54,35 @@ bool Scene3::CreateForest()
 
 bool GAME::Scene3::addModel(const char* filename)
 {
-	Vec3 pos = Vec3(r.rand(1.0, 250.0) - 125.0f, 0, r.rand(1.0, 250.0) - 125.0f);
-	if (filename == "Tree2.obj") pos.y -= 10.0f;
-	float rot = r.rand(1, 360);
-	pos.print();
-	Vec3 scale = Vec3(r.rand(0.05, 0.06), r.rand(0.04, 0.07), r.rand(0.05, 0.06));
-	models.push_back(new Model(pos, Vec3(0.0f, 0.0f, 0.0f), rot, scale));
-	models[models.size() - 1]->OnCreate();
-
-	if (models[models.size() - 1]->LoadMesh(filename) == false) 
+	if (filename == "plane.obj")
 	{
-		return false;
+		Vec3 pos = Vec3(0.0f, 0.0f, 0.0f);
+		float rot = 0.0f;
+		Vec3 scale = Vec3(10.0f, 10.0f, 10.0f);
+		models.push_back(new Model(pos, Vec3(0.0f, 0.0f, 0.0f), rot, scale));
+		models[models.size() - 1]->OnCreate();
+
+		if (models[models.size() - 1]->LoadMesh(filename) == false)
+		{
+			return false;
+		}
 	}
+	else
+	{
+		Vec3 pos = Vec3(r.rand(1.0, 250.0) - 125.0f, 0, r.rand(1.0, 250.0) - 125.0f);
+		if (filename == "Tree2.obj") pos.y -= 10.0f;
+		float rot = r.rand(1, 360);
+		pos.print();
+		Vec3 scale = Vec3(r.rand(0.05, 0.06), r.rand(0.04, 0.07), r.rand(0.05, 0.06));
+		models.push_back(new Model(pos, Vec3(0.0f, 0.0f, 0.0f), rot, scale));
+		models[models.size() - 1]->OnCreate();
+
+		if (models[models.size() - 1]->LoadMesh(filename) == false)
+		{
+			return false;
+		}
+	}
+	
 	return true;
 }
 
