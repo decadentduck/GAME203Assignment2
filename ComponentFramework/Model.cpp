@@ -11,11 +11,11 @@ namespace GAME {
 		pos = pos_;
 		orientation = orientation_;
 		rotation = 0.0f;
-		scale = 1.0f;
+		scale = Vec3(1.0f, 1.0f, 1.0f);
 		shader = nullptr;
 	}
 
-	Model::Model(const Vec3 pos_, const Vec3 orientation_, const float rotation_, const float scale_) {
+	Model::Model(const Vec3 pos_, const Vec3 orientation_, const float rotation_, const Vec3 scale_) {
 		pos = pos_;
 		orientation = orientation_;
 		rotation = rotation_;
@@ -37,12 +37,7 @@ namespace GAME {
 		updateModelMatrix();
 	}
 
-	void Model::updateModelMatrix() {
-		modelMatrix = MMath::translate(pos);
-
-		/// This transform is based on Euler angles - let's do it later
-		///modelMatrix = MMath::translate(pos) * MMath::rotate(orientation.z, Vec3(0.0f, 0.0f, 1.0f)) * MMath::rotate(orientation.x, Vec3(1.0f, 0.0f, 0.0f)) * MMath::rotate(orientation.y, Vec3(0.0f, 1.0f, 0.0f));
-	}
+	void Model::updateModelMatrix() { modelMatrix = MMath::translate(pos); }
 
 	bool Model::OnCreate() {
 		shader = new Shader("phongVert.glsl", "phongFrag.glsl", 3, 0, "vVertex", 1, "vNormal", 2, "texCoords");
@@ -63,8 +58,6 @@ namespace GAME {
 
 
 	void Model::Update(const float deltaTime) {
-		/// See Entity.h
-		///Rotate(Vec3(0.0f, 50.0f * deltaTime, 0.0f));
 	}
 
 	void Model::Render() const {
@@ -79,7 +72,8 @@ namespace GAME {
 
 		glUniformMatrix4fv(projectionMatrixID, 1, GL_FALSE, Camera::currentCamera->getProjectionMatrix());
 		glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, Camera::currentCamera->getViewMatrix());
-		Matrix4 _modelMatrix =  MMath::rotate(rotation, 0.0f, 1.0f, 0.0f) * MMath::scale(scale, scale, scale) * modelMatrix;
+		Matrix4 _modelMatrix =  MMath::rotate(rotation, 0.0f, 1.0f, 0.0f) * MMath::scale(scale) *
+			MMath::translate(-10.0f, -30.0f, 0.0f) * modelMatrix;
 		glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, _modelMatrix);
 		/*** If you want to use the trackball use this code instead
 		glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, modelMatrix * Trackball::getInstance()->getMatrix4());

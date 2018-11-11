@@ -35,8 +35,7 @@ namespace GAME {
 		std::vector<Model*> models;
 		Camera* camera;
 		Vec3 eye, at, up;
-		void CreateForest();
-		float Random(float min, float max);
+		bool CreateForest();
 	};
 }
 #endif

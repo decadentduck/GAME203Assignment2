@@ -25,30 +25,39 @@ bool Scene3::OnCreate()
 	up = Vec3(0.0f, 1.0f, 0.0f);
 	camera = nullptr;
 
-	/// Load Assets: as needed 
-	if (addModel("Tree1.obj") == false) { return false; }
-
 	CreateForest();
 
 	/// Create a shader with attributes
-	SceneEnvironment::getInstance()->setLight(Vec3(0.0f, 3.0f, 7.0f));
+	SceneEnvironment::getInstance()->setLight(Vec3(0.0f, 10.0f, 0.0f));
 
 	OnResize(windowPtr->getWidth(), windowPtr->getHeight());
 	return true;
 }
 
-void Scene3::CreateForest()
+bool Scene3::CreateForest()
 {
-	for (int i = 0; i < 10; i++) { addModel("Tree1.obj"); }
+	for (int i = 0; i < 50; i++) 
+	{ 
+		int tree = r.rand(1, 3);
+		if (tree == 1) 
+		{
+			if(!addModel("Tree1.obj")) return false; 
+		}
+		else
+		{
+			if (!addModel("Tree2.obj")) return false;
+		}
+	}
+	return true;
 }
 
 bool GAME::Scene3::addModel(const char* filename)
 {
-	
-	Vec3 pos = Vec3(r.rand(1.0, 10.0), 0, r.rand(1.0, 10.0));
+	Vec3 pos = Vec3(r.rand(1.0, 250.0) - 125.0f, 0, r.rand(1.0, 250.0) - 125.0f);
+	if (filename == "Tree2.obj") pos.y -= 10.0f;
 	float rot = r.rand(1, 360);
 	pos.print();
-	float scale = 0.05f;
+	Vec3 scale = Vec3(r.rand(0.05, 0.06), r.rand(0.04, 0.07), r.rand(0.05, 0.06));
 	models.push_back(new Model(pos, Vec3(0.0f, 0.0f, 0.0f), rot, scale));
 	models[models.size() - 1]->OnCreate();
 
@@ -87,7 +96,6 @@ void Scene3::Render() const
 
 void Scene3::HandleEvents(const SDL_Event& SDLEvent) 
 {
-	
 	//Handle camera via keyboard input
 	if (SDLEvent.type == SDL_KEYDOWN)
 	{
@@ -103,15 +111,22 @@ void Scene3::HandleEvents(const SDL_Event& SDLEvent)
 			at = MMath::translate(0.0f, 0.0f, 1.0f) * at;
 			break;
 		case SDLK_LEFT:
+			at = at - eye;
 			at = MMath::rotate(5, 0.0f, 1.0f, 0.0f) * at;
+			at = at + eye;
 			break;
 		case SDLK_RIGHT:
+			at = at - eye;
 			at = MMath::rotate(-5, 0.0f, 1.0f, 0.0f) * at;
+			at = at + eye;
 			break;
 		default:
 			break;
 		}
 		camera->SetCamera(eye, at, up);
+		eye.print();
+		at.print();
+		up.print();
 		Camera::currentCamera = camera;
 	}
 }

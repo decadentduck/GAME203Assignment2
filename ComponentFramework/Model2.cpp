@@ -45,7 +45,8 @@ namespace GAME {
 		//Model2Matrix = MMath::translate(pos);
 		change = true;
 		/// This transform is based on Euler angles - let's do it later
-		Model2Matrix = MMath::translate(pos) * MMath::rotate(orientation.z, Vec3(0.0f, 0.0f, 1.0f)) * MMath::rotate(orientation.x, Vec3(1.0f, 0.0f, 0.0f)) * MMath::rotate(orientation.y, Vec3(0.0f, 1.0f, 0.0f));
+		Model2Matrix = MMath::translate(pos) * MMath::rotate(orientation.z, Vec3(0.0f, 0.0f, 1.0f)) * 
+			MMath::rotate(orientation.x, Vec3(1.0f, 0.0f, 0.0f)) * MMath::rotate(orientation.y, Vec3(0.0f, 1.0f, 0.0f));
 	}
 
 	bool Model2::OnCreate() {
@@ -88,7 +89,7 @@ namespace GAME {
 		Matrix3 normalMatrix;
 		if (!change)
 		{
-			Matrix4 _modelMatrix = MMath::rotate(rotation, 0.0f, 1.0f, 0.0f) * MMath::scale(scale, scale, scale);
+			Matrix4 _modelMatrix = MMath::rotate(rotation, 0.0f, 1.0f, 0.0f) * MMath::scale(scale, scale, scale) * Model2Matrix;
 			glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, _modelMatrix);
 			normalMatrix = Matrix3(_modelMatrix);
 		}
