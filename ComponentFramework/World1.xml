@@ -1,54 +1,56 @@
-<object>
-<name>Tree1</name>
-<posX>0</posX>
-<posY>0</posY>
-<posZ>0</posZ>
-<rotX>0</rotX>
-<rotY>0</rotY>
-<rotZ>0</rotZ>
-</object>
-<object>
-	<name>Tree1</name>
-	<posX>3</posX>
-	<posY>0</posY>
-	<posZ>-2</pos>
-	<rotX>45</rotX>
-	<rotY>0</rotY>
-	<rotZ>0</rotZ>
-</object>
-<object>
-	<name>Tree1</name>
-	<posX>-5</posX>
-	<posY>0</posY>
-	<posZ>0</posZ>
-	<rotX>-90</rotX>
-	<rotY>0</rotY>
-	<rotZ>0</rotZ>
-</object>
-<object>
-	<name>Tree2</name>
-	<posX>4</posX>
-	<posY>0</posY>
-	<posZ>-5</posZ>
-	<rotX>0</rotX>
-	<rotY>0</rotY>
-	<rotZ>0</rotZ>
-</object>
-<object>
-	<name>Tree2</name>
-	<posX>0</posX>
-	<posY>0</posY>
-	<posZ>-10</posZ>
-	<rotX>0</rotX>
-	<rotY>180</rotY>
-	<rotZ>0</rotZ>
-</object>
-<object>
-	<name>Tree2</name>
-	<posX>-20</posX>
-	<posY>0</posY>
-	<posZ>-20</posZ>
-	<rotX>0</rotX>
-	<rotY>45</rotY>
-	<rotZ>0</rotZ>
-</object>
+<objects>
+	<object>
+		<name>Tree1</name>
+		<posX>0</posX>
+		<posY>0</posY>
+		<posZ>0</posZ>
+		<rotX>0</rotX>
+		<rotY>0</rotY>
+		<rotZ>0</rotZ>
+	</object>
+	<object>
+		<name>Tree1</name>
+		<posX>3</posX>
+		<posY>0</posY>
+		<posZ>-2</pos>
+		<rotX>45</rotX>
+		<rotY>0</rotY>
+		<rotZ>0</rotZ>
+	</object>
+	<object>
+		<name>Tree1</name>
+		<posX>-5</posX>
+		<posY>0</posY>
+		<posZ>0</posZ>
+		<rotX>-90</rotX>
+		<rotY>0</rotY>
+		<rotZ>0</rotZ>
+	</object>
+	<object>
+		<name>Tree2</name>
+		<posX>4</posX>
+		<posY>0</posY>
+		<posZ>-5</posZ>
+		<rotX>0</rotX>
+		<rotY>0</rotY>
+		<rotZ>0</rotZ>
+	</object>
+	<object>
+		<name>Tree2</name>
+		<posX>0</posX>
+		<posY>0</posY>
+		<posZ>-10</posZ>
+		<rotX>0</rotX>
+		<rotY>180</rotY>
+		<rotZ>0</rotZ>
+	</object>
+	<object>
+		<name>Tree2</name>
+		<posX>-20</posX>
+		<posY>0</posY>
+		<posZ>-20</posZ>
+		<rotX>0</rotX>
+		<rotY>45</rotY>
+		<rotZ>0</rotZ>
+	</object>
+</objects>

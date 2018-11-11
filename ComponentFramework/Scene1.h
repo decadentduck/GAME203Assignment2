@@ -14,6 +14,7 @@
 #include "Trackball.h"
 #include "Object.h"
 #include "Camera.h"
+#include "pugixml.hpp"
 
 using namespace std;
 ///Gamescene assignment
@@ -30,7 +31,7 @@ namespace GAME
 	public:
 		explicit Scene1(Window& windowRef);
 		virtual ~Scene1();
-		virtual bool OnCreate();
+		virtual bool OnCreate(int scene);
 		virtual void OnDestroy();
 		virtual void Update(const float deltaTime);
 		virtual void Render() const;
@@ -38,6 +39,8 @@ namespace GAME
 		virtual void OnResize(const int, const int);
 		class Object* Objects[NUM_OBJECTS];
 		
+		pugi::xml_document doc;
+
 		ifstream fileInput;
 		std::string next, name, filename;
 		int pX, pY, pZ, rX, rY, rZ, loc_end, loc_name, loc_pX, loc_pY, loc_pZ, loc_rX, loc_rY, loc_rZ;
