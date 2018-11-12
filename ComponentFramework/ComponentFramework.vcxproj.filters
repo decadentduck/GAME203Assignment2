@@ -111,6 +111,9 @@
     <ClCompile Include="Randomizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pugixml.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h">
@@ -202,6 +205,12 @@
     </ClInclude>
     <ClInclude Include="Model2.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pugixml.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
