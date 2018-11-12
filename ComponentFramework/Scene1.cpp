@@ -88,20 +88,18 @@ bool Scene1::LoadFile(int scene)
 				if (attr.name() == "name") name = attr.value();
 			}
 
-			for (pugi::xml_node grandChild : child.children())
+			for (pugi::xml_node grandChild : child.children("pos"))
 			{
-				if (grandChild.name() == "pos")
+				float x, y, z;
+				x = y = z = 0.0f;
+				for (pugi::xml_attribute attr : grandChild.attributes())
 				{
-					float x, y, z;
-					x = y= z = 0.0f;
-					for (pugi::xml_attribute attr : grandChild.attributes())
-					{
-						if (attr.name() == "X") x = atof(attr.value());
-						else if (attr.name() == "Y") y = atof(attr.value());
-						else if (attr.name() == "Z") z = atof(attr.value());
-					}
-					pos = Vec3(x, y, z);
+					if (attr.name() == "X") x = atof(attr.value());
+					else if (attr.name() == "Y") y = atof(attr.value());
+					else if (attr.name() == "Z") z = atof(attr.value());
 				}
+				pos = Vec3(x, y, z);
+
 			}
 			//instantiate the object here
 			if (!addModel(name, pos, rot)) return false;

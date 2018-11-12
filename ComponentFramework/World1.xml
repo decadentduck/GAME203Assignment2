@@ -1,11 +1,6 @@
 <objects>
-	<object>
-		<name>Tree1</name>
-		<pos>
-			<X>0</X>
-			<Y>0</Y>
-			<Z>0</Z>
-		</pos>
+	<object name="Tree1">
+		<pos X="0" Y="0" Z="0"> </pos>
 		<rot>90</rot>
 	</object>
 	<object>
