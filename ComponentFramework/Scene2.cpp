@@ -37,7 +37,7 @@ bool Scene2::OnCreate()
 	if (addModel("Tree1.obj") == false) {
 		return false;
 	}
-	if (addModel("skulll.obj") == false) {
+	if (addModel("skull.obj") == false) {
 		return false;
 	}
 	if (addModel("skull.obj") == false) {
