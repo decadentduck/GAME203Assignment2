@@ -112,9 +112,6 @@ bool Scene1::LoadFile(int scene)
 
 			for (pugi::xml_node grandChild : child.children("rot"))
 			{
-				float rot;
-				rot = 0.0f;
-
 				if (grandChild.attribute("value"))
 				{
 					rot = atof(grandChild.attribute("value").value());
