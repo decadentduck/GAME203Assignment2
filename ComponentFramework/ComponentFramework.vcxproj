@@ -83,6 +83,7 @@
     <ClCompile Include="Model2.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjLoader.cpp" />
+    <ClCompile Include="pugixml.cpp" />
     <ClCompile Include="Randomizer.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scene0.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="LoadTextureRAW.h" />
+    <ClInclude Include="MatrixStack.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="GameSceneManager.h" />
@@ -113,6 +115,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="Plane.h" />
+    <ClInclude Include="pugixml.hpp" />
     <ClInclude Include="Randomizer.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene0.h" />

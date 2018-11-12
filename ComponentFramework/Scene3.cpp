@@ -34,9 +34,9 @@ bool Scene3::OnCreate()
 	up = Vec3(0.0f, 1.0f, 0.0f);
 	camera = nullptr;
 
-	if (!addModel("Plane.obj")) return false;
+	if (!addModel("Plane1.obj")) return false;
 
-	//CreateForest();
+	CreateForest();
 
 	/// Create a shader with attributes
 	SceneEnvironment::getInstance()->setLight(Vec3(0.0f, 10.0f, 0.0f));
@@ -64,9 +64,9 @@ bool Scene3::CreateForest()
 
 bool GAME::Scene3::addModel(const char* filename)
 {
-	if (filename == "Plane.obj")
+	if (filename == "Plane1.obj")
 	{
-		models.push_back(new Model(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f), 0.0f, Vec3(1.0f, 1.0f, 1.0f)));
+		models.push_back(new Model(Vec3(6.0f, 28.0f, 2.0f), Vec3(0.0f, 0.0f, 0.0f), 0.0f, Vec3(2.0f, 1.0f, 2.0f)));
 		models[models.size() - 1]->OnCreate();
 
 		if (models[models.size() - 1]->LoadMesh(filename) == false)
