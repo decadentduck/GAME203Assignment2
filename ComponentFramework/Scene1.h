@@ -38,6 +38,7 @@ namespace GAME
 
 	private:
 		bool LoadFile(int file);
+		int fileLoaded;
 		Vec3 lightPos;
 		std::vector<Model*> models;
 		Camera *camera = nullptr;

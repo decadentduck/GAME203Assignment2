@@ -1,31 +1,25 @@
 <objects>
-	<object>
-		<name>Tree1</name>
+	<object name="Tree1">
 		<pos X = "20" Y = "0" Z = "10"></pos>
 		<rot value = "0"></rot>
 	</object>
-	<object>
-		<name>Tree1</name>
+	<object name="Tree1">
 		<pos X = "-13" Y = "0" Z = "-2"></pos>
 		<rot value = "45"></rot>
 	</object>
-	<object>
-		<name>Tree1</name>
+	<object name="Tree1">
 		<pos X = "15" Y = "0" Z = "-4"></pos>
 		<rot value = "-90"></rot>
 	</object>
-	<object>
-		<name>Tree2</name>
+	<object name="Tree2">
 		<pos X = "41" Y = "0" Z = "-25"></pos>
 		<rot value = "-45"></rot>
 	</object>
-	<object>
-		<name>Tree2</name>
+	<object name="Tree2">
 		<pos X = "19" Y = "0" Z = "-10"></pos>
 		<rot value = "135"></rot>
 	</object>
-	<object>
-		<name>Tree2</name>
+	<object name="Tree2">
 		<pos X = "-20" Y = "0" Z = "20"></pos>
 		<rot value = "270"></rot>
 	</object>
