@@ -11,15 +11,6 @@
 #include "Model1.h"
 #include "ObjLoader.h"
 
-/*
-BRIEF:
-The assignment was to create a forest of somewhat unique looking trees and a camera controlled with keyboard input. 
-My solution was to render many instances of 2 models. I’ve made the trees appear to be unique by randomizing the 
-position, rotation and scale of each tree. I’ve solved the camera part by altering the first 2 vectors of a look 
-at matrix based on keyboard input. The up and down arrows alter the first vector and the left and right arrows 
-change the second vector.
-*/
-
 using namespace GAME;
 using namespace MATH;
 
