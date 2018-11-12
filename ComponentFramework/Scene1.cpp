@@ -157,21 +157,17 @@ bool GAME::Scene1::addModel(const string tree, const Vec3 pos, const float rot)
 
 void Scene1::HandleEvents(const SDL_Event& SDLEvent)
 {
-	SDL_Event event;
-	//pressing a key switches which file it reads from
-	if (SDL_PollEvent(&event) != 0) {
-		switch (event.type) 
+	switch (SDLEvent.type)
+	{
+	case SDL_KEYUP:
+		if (SDLEvent.key.keysym.sym == SDLK_RETURN)
 		{
-			case SDL_KEYUP:
-				if (event.key.keysym.sym == SDLK_RETURN)
-				{
-					if (fileLoaded == 1) { LoadFile(2); fileLoaded = 2; }
-					else if (fileLoaded == 2) { LoadFile(1); fileLoaded = 1; }
-				}
-				break;
-
-			default:
-				break;
+			if (fileLoaded == 1) { LoadFile(2); fileLoaded = 2; }
+			else if (fileLoaded == 2) { LoadFile(1); fileLoaded = 1; }
 		}
+		break;
+
+	default:
+		break;
 	}
 }
