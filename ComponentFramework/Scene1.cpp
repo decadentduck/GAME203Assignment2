@@ -83,21 +83,21 @@ bool Scene1::LoadFile(int scene)
 
 		for (pugi::xml_node child : parent.children())
 		{
-			for (pugi::xml_attribute attr : child.attributes())
+			if (child.attribute("name"))
 			{
-				if (attr.name() == "name") name = attr.value();
+				name = child.attribute("name").value();
 			}
 
 			for (pugi::xml_node grandChild : child.children("pos"))
 			{
 				float x, y, z;
 				x = y = z = 0.0f;
-				for (pugi::xml_attribute attr : grandChild.attributes())
+
+				if (grandChild.attribute("X"))
 				{
-					if (attr.name() == "X") x = atof(attr.value());
-					else if (attr.name() == "Y") y = atof(attr.value());
-					else if (attr.name() == "Z") z = atof(attr.value());
+					x = atof(grandChild.attribute("X").value());
 				}
+
 				pos = Vec3(x, y, z);
 
 			}

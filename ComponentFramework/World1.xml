@@ -1,8 +1,7 @@
 <objects>
-	<object>
-		<name>Tree1</name>
-		<pos X = "0" Y = "0" Z = "0"></pos>
-		<rot value = "90">90</rot>
+	<object name="Tree1">
+		<pos X="1" Y="1" Z="1"></pos>
+		<rot value="90">90</rot>
 	</object>
 	<object>
 		<name>Tree1</name>
