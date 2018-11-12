@@ -4,7 +4,7 @@
 		<rot value="90"></rot>
 	</object>
 	<object name="Tree1">
-		<pos X = "30" Y = "0" Z = "-20"></pos>
+		<pos X = "60" Y = "0" Z = "-20"></pos>
 		<rot value="45"></rot>
 	</object>
 	<object name="Tree1">
@@ -12,15 +12,15 @@
 		<rot value = "-90"></rot>
 	</object>
 	<object name="Tree2">
-		<pos X = "40" Y = "0" Z = "-50"></pos>
+		<pos X = "70" Y = "0" Z = "-50"></pos>
 		<rot value = "0"></rot>
 	</object>
 	<object name="Tree2">
-		<pos X = "30" Y = "0" Z = "-20"></pos>
-		<rot value = "45"></rot>
+		<pos X = "-30" Y = "0" Z = "5"></pos>
+		<rot value = "145"></rot>
 	</object>
 	<object name="Tree2">
-		<pos X = "-20" Y = "0" Z = "-20"></pos>
+		<pos X = "-70" Y = "0" Z = "-20"></pos>
 		<rot value = "70"></rot>
 	</object>
 </objects>
