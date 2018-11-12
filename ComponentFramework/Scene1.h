@@ -15,19 +15,17 @@
 #include "Object.h"
 #include "Camera.h"
 #include "pugixml.hpp"
+#include "Model.h"
 
 using namespace std;
 ///Gamescene assignment
 namespace GAME
 {
-	/// Forward casting
-	class Trackball;
-	class Model;
 
 	class Scene1 : public Scene
 	{
 	protected:
-
+		bool addModel(const string tree, const Vec3 pos, const float rot);
 	public:
 		explicit Scene1(Window& windowRef);
 		virtual ~Scene1();
@@ -37,20 +35,11 @@ namespace GAME
 		virtual void Render() const;
 		virtual void HandleEvents(const SDL_Event &SDLEvent);
 		virtual void OnResize(const int, const int);
-		class Object* Objects[NUM_OBJECTS];
-		
-		pugi::xml_document doc;
-
-		ifstream fileInput;
-		std::string next, name, filename;
-		int pX, pY, pZ, rX, rY, rZ, loc_end, loc_name, loc_pX, loc_pY, loc_pZ, loc_rX, loc_rY, loc_rZ;
 
 	private:
-		bool LoadFile(string fileName);
+		bool LoadFile(int file);
 		Vec3 lightPos;
-		Model *model;
-		Trackball *trackball;
-		int activeScene, loadedScene;
+		std::vector<Model*> models;
 		Camera *camera = nullptr;
 	};
 }

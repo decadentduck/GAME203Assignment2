@@ -12,11 +12,7 @@ Scene1::~Scene1()
 
 bool Scene1::OnCreate()
 {
-	activeScene = 1;
-
-	LoadFile(activeScene);
-
-	getchar();
+	LoadFile(1);
 	
 	return true;
 }
@@ -69,7 +65,7 @@ bool Scene1::LoadFile(int scene)
 	{
 		pugi::xml_node parent = doc.child;
 
-		for (pugi::xml_node child : parent.children("object"))
+		for (pugi::xml_node child : parent.children())
 		{
 			for (pugi::xml_attribute attr : child.attributes())
 			{
