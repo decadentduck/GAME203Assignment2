@@ -31,6 +31,20 @@ void Scene1::OnResize(int w_, int h_)
 
 void Scene1::OnDestroy()
 {
+	/// Cleanup Assets
+	if (camera)
+	{
+		camera = nullptr;
+		delete camera;
+	}
+	for (Model* model : models)
+	{
+		if (model)
+		{
+			model = nullptr;
+			delete model;
+		}
+	}
 }
 
 void Scene1::Update(const float deltaTime)
@@ -40,11 +54,13 @@ void Scene1::Update(const float deltaTime)
 
 void Scene1::Render() const
 {
-	//loop through the array of objects, print them out in their respective locations and orientations
-	for (int i = 0; i < NUM_OBJECTS; i++ )
-	{
-		//draw things idfk man
-	}
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	/// Draw your scene here
+	for (Model* model : models) { model->Render(); }
+	SDL_GL_SwapWindow(windowPtr->getSDLWindow());
 }
 
 
@@ -54,35 +70,35 @@ bool Scene1::LoadFile(int scene)
 	pugi::xml_parse_result result;
 
 	//temp values
-	string name;
-	Vec3 pos;
-	int rot;
+	string name = string("");
+	Vec3 pos = Vec3(0, 0, 0);
+	int rot = 0;
 
 	if (scene == 1) { result = doc.load_file("World1.xml"); }
 	else if (scene == 2) { result = doc.load_file("World2.xml"); }
 
 	if (result)
 	{
-		pugi::xml_node parent = doc.child;
+		pugi::xml_node parent = doc.child("objects");
 
 		for (pugi::xml_node child : parent.children())
 		{
 			for (pugi::xml_attribute attr : child.attributes())
 			{
-				if (attr.name == "name") name = attr.value;
+				if (attr.name() == "name") name = attr.value();
 			}
 
 			for (pugi::xml_node grandChild : child.children())
 			{
-				if (grandChild.name == "pos")
+				if (grandChild.name() == "pos")
 				{
 					float x, y, z;
 					x = y= z = 0.0f;
 					for (pugi::xml_attribute attr : grandChild.attributes())
 					{
-						if (attr.name == "X") x = attr.value;
-						else if (attr.name == "Y") y = attr.value;
-						else if (attr.name == "Z") z = attr.value;
+						if (attr.name() == "X") x = atof(attr.value());
+						else if (attr.name() == "Y") y = atof(attr.value());
+						else if (attr.name() == "Z") z = atof(attr.value());
 					}
 					pos = Vec3(x, y, z);
 				}
@@ -133,7 +149,7 @@ void Scene1::HandleEvents(const SDL_Event& SDLEvent)
 			case SDL_KEYUP:
 				if (event.key.keysym.sym == SDLK_RETURN)
 				{
-					
+					LoadFile(2);
 				}
 				break;
 

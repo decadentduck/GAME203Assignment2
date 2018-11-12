@@ -6,21 +6,21 @@
 			<Y>0</Y>
 			<Z>0</Z>
 		</pos>
-		<rot>0</rot>
+		<rot>90</rot>
 	</object>
 	<object>
 		<name>Tree1</name>
 		<pos>
-			<X>3</X>
+			<X>30</X>
 			<Y>0</Y>
-			<Z>-2</Z>
+			<Z>-20</Z>
 		</pos>
 		<rot>45</rot>
 	</object>
 	<object>
 		<name>Tree1</name>
 		<pos>
-			<X>-5</X>
+			<X>-50</X>
 			<Y>0</Y>
 			<Z>0</Z>
 		</pos>
@@ -29,18 +29,18 @@
 	<object>
 		<name>Tree2</name>
 		<pos>
-			<X>4</X>
+			<X>40</X>
 			<Y>0</Y>
-			<Z>-5</Z>
+			<Z>-50</Z>
 		</pos>
 		<rot>0</rot>
 	</object>
 	<object>
 		<name>Tree1</name>
 		<pos>
-			<X>3</X>
+			<X>30</X>
 			<Y>0</Y>
-			<Z>-2</Z>
+			<Z>-20</Z>
 		</pos>
 		<rot>45</rot>
 	</object>
@@ -49,7 +49,7 @@
 		<pos>
 			<X>-20</X>
 			<Y>0</Y>
-			<Z>-2o</Z>
+			<Z>-20</Z>
 		</pos>
 		<rot>70</rot>
 	</object>
