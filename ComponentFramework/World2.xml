@@ -1,6 +1,6 @@
 <objects>
 	<object name="Tree1">
-		<pos X = "90" Y = "0" Z = "10"></pos>
+		<pos X = "80" Y = "0" Z = "10"></pos>
 		<rot value = "0"></rot>
 	</object>
 	<object name="Tree1">
@@ -20,7 +20,7 @@
 		<rot value = "135"></rot>
 	</object>
 	<object name="Tree2">
-		<pos X = "-20" Y = "0" Z = "20"></pos>
+		<pos X = "-60" Y = "0" Z = "15"></pos>
 		<rot value = "270"></rot>
 	</object>
 </objects>
