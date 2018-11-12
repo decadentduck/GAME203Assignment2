@@ -46,7 +46,7 @@ namespace GAME {
 		change = true;
 		/// This transform is based on Euler angles - let's do it later
 		Model2Matrix = MMath::translate(pos) * MMath::rotate(orientation.z, Vec3(0.0f, 0.0f, 1.0f)) * 
-			MMath::rotate(orientation.x, Vec3(1.0f, 0.0f, 0.0f)) * MMath::rotate(orientation.y, Vec3(0.0f, 1.0f, 0.0f));
+			MMath::rotate(orientation.x, Vec3(1.0f, 0.0f, 0.0f)) * MMath::rotate(orientation.y, Vec3(0.0f, 1.0f, 0.0f)) * MMath::scale(scale,scale,scale);
 	}
 
 	bool Model2::OnCreate() {
