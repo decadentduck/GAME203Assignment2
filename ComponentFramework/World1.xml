@@ -1,51 +1,32 @@
 <objects>
-	<object name="Tree1">
-		<pos X="0" Y="0" Z="0"> </pos>
-		<rot>90</rot>
+	<object>
+		<name>Tree1</name>
+		<pos X = "0" Y = "0" Z = "0"></pos>
+		<rot value = "90">90</rot>
 	</object>
 	<object>
 		<name>Tree1</name>
-		<pos>
-			<X>30</X>
-			<Y>0</Y>
-			<Z>-20</Z>
-		</pos>
-		<rot>45</rot>
+		<pos X = "30" Y = "0" Z = "-20"></pos>
+		<rot value = "45"></rot>
 	</object>
 	<object>
 		<name>Tree1</name>
-		<pos>
-			<X>-50</X>
-			<Y>0</Y>
-			<Z>0</Z>
-		</pos>
-		<rot>-90</rot>
+		<pos X = "-50" Y = "0" Z = "0"></pos>
+		<rot value = "-90"></rot>
 	</object>
 	<object>
 		<name>Tree2</name>
-		<pos>
-			<X>40</X>
-			<Y>0</Y>
-			<Z>-50</Z>
-		</pos>
-		<rot>0</rot>
+		<pos X = "40" Y = "0" Z = "-50"></pos>
+		<rot value = "0"></rot>
 	</object>
 	<object>
 		<name>Tree1</name>
-		<pos>
-			<X>30</X>
-			<Y>0</Y>
-			<Z>-20</Z>
-		</pos>
-		<rot>45</rot>
+		<pos X = "30" Y = "0" Z = "-20"></pos>
+		<rot value = "45"></rot>
 	</object>
 	<object>
 		<name>Tree1</name>
-		<pos>
-			<X>-20</X>
-			<Y>0</Y>
-			<Z>-20</Z>
-		</pos>
-		<rot>70</rot>
+		<pos X = "-20" Y = "0" Z = "-20"></pos>
+		<rot value = "70"></rot>
 	</object>
 </objects>
