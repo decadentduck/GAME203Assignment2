@@ -37,10 +37,10 @@ bool Scene2::OnCreate()
 	if (addModel("Tree1.obj") == false) {
 		return false;
 	}
-	if (addModel("skull.obj") == false) {
+	if (addModel("Tree1.obj") == false) {
 		return false;
 	}
-	if (addModel("skull.obj") == false) {
+	if (addModel("Tree1.obj") == false) {
 		return false;
 	}
 	eye = Vec3(0.0f, 3.0f, 10.0f);
