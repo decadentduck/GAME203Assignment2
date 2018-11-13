@@ -3,7 +3,7 @@
 using namespace GAME;
 using namespace MATH;
 
-Scene1::Scene1(Window& windowRef) :Scene(windowRef) { fileLoaded = 1; }
+Scene1::Scene1(Window& windowRef) :Scene(windowRef) { }
 
 Scene1::~Scene1()
 {
@@ -13,7 +13,8 @@ Scene1::~Scene1()
 bool Scene1::OnCreate()
 {
 	LoadFile(1);
-	
+	fileLoaded = 1;
+
 	return true;
 }
 
@@ -66,7 +67,7 @@ void Scene1::Render() const
 
 bool Scene1::LoadFile(int scene)
 {
-
+	models.clear();
 	pugi::xml_document doc;
 	pugi::xml_parse_result result;
 
@@ -100,11 +101,11 @@ bool Scene1::LoadFile(int scene)
 				}
 				if (grandChild.attribute("Y"))
 				{
-					x = atof(grandChild.attribute("Y").value());
+					y = atof(grandChild.attribute("Y").value());
 				}
 				if (grandChild.attribute("Z"))
 				{
-					x = atof(grandChild.attribute("Z").value());
+					z = atof(grandChild.attribute("Z").value());
 				}
 				pos = Vec3(x, y, z);
 
@@ -156,21 +157,17 @@ bool GAME::Scene1::addModel(const string tree, const Vec3 pos, const float rot)
 
 void Scene1::HandleEvents(const SDL_Event& SDLEvent)
 {
-	SDL_Event event;
-	//pressing a key switches which file it reads from
-	if (SDL_PollEvent(&event) != 0) {
-		switch (event.type) 
+	switch (SDLEvent.type)
+	{
+	case SDL_KEYUP:
+		if (SDLEvent.key.keysym.sym == SDLK_RETURN)
 		{
-			case SDL_KEYUP:
-				if (event.key.keysym.sym == SDLK_RETURN)
-				{
-					if (fileLoaded == 1) { LoadFile(2); fileLoaded = 2; }
-					else if (fileLoaded == 2) { LoadFile(1); fileLoaded = 1; }
-				}
-				break;
-
-			default:
-				break;
+			if (fileLoaded == 1) { LoadFile(2); fileLoaded = 2; }
+			else if (fileLoaded == 2) { LoadFile(1); fileLoaded = 1; }
 		}
+		break;
+
+	default:
+		break;
 	}
 }

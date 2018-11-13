@@ -22,6 +22,13 @@ using namespace std;
 namespace GAME
 {
 
+	//My task was to instantiate a scene of gameobjects from a file. After some experimenting, 
+	//I decided to use.XML files for this task.With some consideration and discussion from my 
+	//other group members, I downloaded a class called “pugixml” which made it much easier to 
+	//read from.Then I created two identically formatted XML files and gave them different values 
+	//to read.Pressing the enter key will clear the list of objects, then create a new one, reading 
+	//from the other XML file.
+
 	class Scene1 : public Scene
 	{
 	protected:
