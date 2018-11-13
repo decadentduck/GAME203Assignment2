@@ -53,7 +53,7 @@ namespace GAME
 		//Model Variables
 		Vec3 modelPosition;
 		Vec3 modelOrientation;
-
+		Vec3 tempPosition;
 
 	};
 }

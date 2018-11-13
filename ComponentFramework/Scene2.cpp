@@ -189,12 +189,14 @@ void Scene2::HandleEvents(const SDL_Event& SDLEvent)
 			modelPosition += Vec3(-1.0f, 0.0f, 0.0f);
 			break;
 		case SDLK_y:
-
+			tempPosition = modelPosition;
+			modelPosition = Vec3(0.0f, 0.0f, 0.0f);
 			break;
 		case SDLK_h:
-
+			modelPosition = tempPosition;
 			break;
 		case SDLK_u:
+			
 			modelOrientation += Vec3(-1.0f, 1.0f, 0.0f);
 			break;
 		case SDLK_o:
