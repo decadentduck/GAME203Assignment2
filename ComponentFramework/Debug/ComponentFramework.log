@@ -1,7 +1,11 @@
 ﻿  GameSceneManager.cpp
-  Scene0.cpp
   Scene1.cpp
+d:\visualstudiosprojects\game203assignment2\componentframework\scene1.cpp(100): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\visualstudiosprojects\game203assignment2\componentframework\scene1.cpp(104): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\visualstudiosprojects\game203assignment2\componentframework\scene1.cpp(108): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\visualstudiosprojects\game203assignment2\componentframework\scene1.cpp(118): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+d:\visualstudiosprojects\game203assignment2\componentframework\scene1.cpp(123): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+d:\visualstudiosprojects\game203assignment2\componentframework\scene1.cpp(127): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   Scene2.cpp
-  Scene3.cpp
   Generating Code...
   ComponentFramework.vcxproj -> D:\VisualStudiosProjects\GAME203Assignment2\Debug\ComponentFramework.exe
